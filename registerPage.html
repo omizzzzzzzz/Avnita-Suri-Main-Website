@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserve Your Spot — Chronic Pain Freedom Workshop | Avnita Suri</title>
+  <meta name="description"
+    content="Join Avnita Suri's 90-minute Chronic Pain Freedom Workshop. A live, science-informed mind-body approach to chronic pain relief." />
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1367108322051761');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1367108322051761&ev=PageView&noscript=1" /></noscript>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" type="text/css" href="css/slick.css" />
+  <link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #F7F7FF;
+      --white: #ffffff;
+      --text: #2d2a26;
+      --text-soft: #60656F;
+      --accent: #E55381;
+      --accent-deep: #74161c;
+      --accent-glow: #fdf5f6;
+      --blush: #E3B9BC;
+      --mauve: #BFA4A4;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 3.5rem;
+    }
+
+    img { max-width: 100%; height: auto; }
+    a { text-decoration: none; }
+
+    .register-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(160deg, var(--cream) 0%, var(--accent-glow) 40%, #f5e0e4 70%, var(--cream) 100%);
+    }
+
+    .register-card {
+      background: var(--white);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+      max-width: 64rem;
+      width: 100%;
+      padding: 2rem 2.5rem 2.5rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent-deep); }
+
+    .register-badge {
+      text-align: center;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .register-headline {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .register-headline span { color: var(--accent-deep); }
+
+    .register-subhead {
+      text-align: center;
+      color: var(--text-soft);
+      font-size: 1.05rem;
+      max-width: 38rem;
+      margin: 0 auto 2rem;
+    }
+
+    .register-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .register-video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      background: #f0eaeb;
+    }
+    .register-video iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 0.75rem;
+    }
+
+    .register-cta-area { text-align: center; }
+
+    .register-cta-label {
+      color: var(--mauve);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .register-cta-date {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .register-price {
+      margin-bottom: 0.75rem;
+    }
+    .register-price .old {
+      color: var(--text-soft);
+      text-decoration: line-through;
+      font-size: 1.25rem;
+    }
+    .register-price .new {
+      color: var(--accent);
+      font-size: 2.75rem;
+      font-weight: 700;
+      margin-left: 0.75rem;
+    }
+
+    .register-save {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-register {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 0.5rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: background 0.2s, transform 0.15s;
+      animation: pulse 2s infinite;
+    }
+    .btn-register:hover {
+      background: var(--accent-deep);
+      transform: translateY(-1px);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .register-small {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-top: 0.75rem;
+    }
+
+    .register-about {
+      text-align: center;
+      max-width: 40rem;
+      margin: 0 auto 2.5rem;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .register-benefits {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .register-benefit { max-width: 14rem; }
+
+    .register-benefit-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--accent-glow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    .register-benefit h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .register-benefit p {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .testimonial-heading {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    .testimonial-heading span { color: var(--mauve); }
+
+    /* Slick overrides */
+    .slick-prev:before, .slick-next:before { color: var(--accent) !important; }
+    .slick-dots li.slick-active button:before { color: var(--accent) !important; }
+    .slick-dots li button:before { color: #ccc !important; }
+
+    .v2-tcard { padding: 0 0.75rem; height: 100%; }
+
+    .v2-tcard-inner {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      background: var(--white);
+      transition: border-color 0.3s;
+      position: relative;
+      min-height: 200px;
+    }
+    .v2-tcard-inner:hover { border-color: var(--blush); }
+
+    .v2-tcard-photo {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      position: absolute;
+      top: 12px; right: 12px;
+    }
+
+    .v2-tcard-quote {
+      font-size: 2rem;
+      color: var(--blush);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      font-family: var(--serif);
+    }
+
+    .v2-tcard-text {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      padding-right: 3rem;
+      flex: 1;
+    }
+
+    .v2-tcard-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: right;
+      margin-top: 1rem;
+    }
+
+    .v2-tcard-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .v2-tcard-video {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      background: var(--accent-glow);
+      color: var(--accent);
+      padding: 0.3rem 0.75rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+    }
+    .v2-tcard-video:hover { background: var(--accent); color: white; }
+    .v2-tcard-video svg { width: 12px; height: 12px; fill: currentColor; }
+
+    /* Sticky bottom bar */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 50;
+      background: var(--accent);
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    }
+    .sticky-cta p { color: white; font-size: 0.875rem; font-weight: 500; }
+    .sticky-cta a {
+      background: white;
+      color: var(--accent);
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 0.375rem;
+      font-size: 0.85rem;
+      transition: transform 0.2s;
+      white-space: nowrap;
+    }
+    .sticky-cta a:hover { transform: scale(1.05); }
+
+    @media (max-width: 768px) {
+      .register-card { padding: 1.5rem; }
+      .register-headline { font-size: 1.75rem; }
+      .register-grid { grid-template-columns: 1fr; }
+      .register-cta-date { font-size: 1.35rem; }
+      .register-benefits { gap: 1.5rem; }
+      .testimonial-heading { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="register-wrapper">
+    <div class="register-card">
+      <!-- Back -->
+      <a href="index.html" class="back-link">&larr; Back to Home</a>
+
+      <!-- Badge -->
+      <p class="register-badge">
+        If you're struggling with chronic pain, this is where your healing begins.
+      </p>
+
+      <!-- Headline -->
+      <h1 class="register-headline">
+        Break Free from Chronic Pain &mdash;
+        <span>A Structured Mind-Body Approach</span>
+        That Brings Relief in 60 Days
+      </h1>
+
+      <!-- Subhead -->
+      <p class="register-subhead">
+        A step-by-step system to retrain your brain, calm your nervous system,
+        and finally feel safe in your body again.
+      </p>
+
+      <!-- Video + CTA -->
+      <div class="register-grid">
+        <div class="register-video">
+          <iframe src="https://www.youtube.com/embed/XGVnzDoIHPk?si=xBuq0SRUdRP-NSYa"
+            title="Workshop Introduction Video" allowfullscreen></iframe>
+        </div>
+
+        <div class="register-cta-area">
+          <p class="register-cta-label">90-Minute Healing Workshop</p>
+          <h3 class="register-cta-date">Live Workshop &mdash; Limited Spots</h3>
+
+          <div class="register-price">
+            <span class="old">&pound;29</span>
+            <span class="new">&pound;0</span>
+          </div>
+
+          <p class="register-save">Save 100% Today</p>
+
+          <a href="https://avnita-fcp.systeme.io/3c45e74b" target="_blank" class="btn-register">
+            RESERVE MY FREE SPOT
+          </a>
+
+          <p class="register-small">
+            Secure checkout &bull; Instant access to workshop details
+          </p>
+        </div>
+      </div>
+
+      <!-- Credibility -->
+      <div class="register-about">
+        <p>
+          Hi, I'm Avnita. I help individuals overcome chronic pain by uncovering the emotional, neurological,
+          and stress-based patterns that keep the body stuck in protection mode. I've supported clients with
+          migraines, back pain, nerve pain, pelvic pain, arthritis and more &mdash; even when tests showed "nothing wrong."
+          Through mind-body tools like somatic calming, emotional awareness and belief rewiring, I help people
+          reclaim a pain-free life.
+        </p>
+      </div>
+
+      <!-- Benefits -->
+      <div class="register-benefits">
+        <div class="register-benefit">
+          <div class="register-benefit-icon">&#x1F9ED;</div>
+          <h3>Learn Step by Step</h3>
+          <p>Understand exactly why your pain exists and how to retrain your brain.</p>
+        </div>
+        <div class="register-benefit">
+          <div class="register-benefit-icon">&#x1F4AC;</div>
+          <h3>Get the Complete Roadmap</h3>
+          <p>Discover the exact process I use to help my clients get pain-free.</p>
+        </div>
+        <div class="register-benefit">
+          <div class="register-benefit-icon">&#x1F33F;</div>
+          <h3>Beginner-Friendly Tools</h3>
+          <p>Calming practices that work even if you've tried everything already.</p>
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+      <h2 class="testimonial-heading">
+        Real Stories, <span>Real Results</span>
+      </h2>
+      <div class="testimonial-slider"></div>
+    </div>
+  </section>
+
+  <!-- Sticky bottom CTA -->
+  <div class="sticky-cta">
+    <p>Join the Chronic Pain Freedom Workshop Today</p>
+    <a href="https://avnita-fcp.systeme.io/3c45e74b" target="_blank">Reserve Your Seat</a>
+  </div>
+
+  <script src="js/testimonials.js"></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script src="js/slick.js"></script>
+  <script>
+    $(document).ready(function () {
+      var container = document.querySelector(".testimonial-slider");
+      if (container && typeof testimonials !== "undefined") {
+        container.innerHTML = testimonials.map(function (item) {
+          var videoBtn = item.video
+            ? '<a href="' + item.video + '" target="_blank" class="v2-tcard-video"><svg viewBox="0 0 16 16"><path d="M6.5 4.5v7l5.5-3.5z"/></svg>Watch Video</a>'
+            : '';
+          return '<div class="v2-tcard"><div class="v2-tcard-inner">' +
+            (item.image ? '<img src="' + item.image + '" class="v2-tcard-photo" onerror="this.style.display=\'none\'" />' : '') +
+            '<div><div class="v2-tcard-quote">&ldquo;</div>' +
+            '<p class="v2-tcard-text">' + item.text + '</p></div>' +
+            '<div class="v2-tcard-footer">' + videoBtn +
+            '<p class="v2-tcard-name" style="margin-top:0">&mdash; ' + item.name + '</p>' +
+            '</div></div></div>';
+        }).join("");
+
+        $(".testimonial-slider").slick({
+          dots: true,
+          arrows: true,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 5000,
+          slidesToShow: 3,
+          responsive: [
+            { breakpoint: 1024, settings: { slidesToShow: 2 } },
+            { breakpoint: 600, settings: { slidesToShow: 1 } }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
