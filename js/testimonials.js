@@ -113,4 +113,29 @@ const testimonials = [
     image: "",
     video: "https://youtu.be/OvivKt-N6nY",
   },
+  {
+    text: "Half my body's numbness gone in 1 session with Avnita. She is amazing!",
+    name: "Elizabeth Alvarado",
+    image: "",
+  },
+  {
+    text: "I had DDD, slipped disc problem with back pain and knee pain. Avnita's drugless therapy is amazing.",
+    name: "Harini Prabhala",
+    image: "",
+  },
+  {
+    text: "I had a lot of pain, doctors found nothing wrong, a chiropractor made it worse. After Avnita's program, the pain's disappeared.",
+    name: "Mansukh Pankhania",
+    image: "",
+  },
+  {
+    text: "I fell down the stairs and my back was in agony for over a week, until I worked with Avnita. Within a few days it was gone completely.",
+    name: "R S",
+    image: "",
+  },
+  {
+    text: "I did one session with Avnita that focused on a large cyst I had in my right breast. Within 2 weeks there was no sign of pain and the lump had completely disappeared! This work is groundbreaking and life changing!",
+    name: "Marlisa Cooper",
+    image: "",
+  },
 ];
