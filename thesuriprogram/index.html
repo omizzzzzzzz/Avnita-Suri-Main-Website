@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Suri Program | Enrol</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100dvh;
+      background: linear-gradient(135deg, #1d4179 0%, #041239 42%, #000 50%, #4e1151 100%);
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #fff;
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      min-height: 100dvh;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      padding: 2rem 1.25rem;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .page {
+        grid-template-columns: 1fr 420px;
+        padding: 2rem 4rem;
+        gap: 4rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .page { padding: 2rem 6rem; gap: 5rem; }
+    }
+
+    /* ── LEFT: INFO PANEL ── */
+    .info {
+      max-width: 560px;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 1.5rem;
+      padding: 2.25rem 2rem;
+    }
+    .info .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2ca0da;
+      background: rgba(44,160,218,0.12);
+      border-radius: 2rem;
+      padding: 0.4rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .info h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+    @media (min-width: 768px) {
+      .info h1 { font-size: 2.5rem; }
+    }
+    .info h1 span { color: #2ca0da; }
+    .info .lead {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1.75rem;
+    }
+    .info .features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .info .features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.9);
+    }
+    .info .features li .num {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      background: #1071b8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 0.1rem;
+    }
+    .info .features li strong { color: #fff; }
+    .info .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin: 1.5rem 0;
+    }
+    .info .quote {
+      font-style: italic;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.65);
+    }
+    .info .quote strong {
+      display: block;
+      font-style: normal;
+      color: rgba(255,255,255,0.85);
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+    }
+
+    /* ── RIGHT: CHECKOUT CARD ── */
+    .card {
+      background: #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+      width: 100%;
+      padding: 2.25rem 1.75rem;
+    }
+    .card h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #111;
+      text-align: center;
+      margin-bottom: 0.2rem;
+    }
+    .card .card-sub {
+      text-align: center;
+      color: #888;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+    .card .price {
+      text-align: center;
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: #1071b8;
+      margin-bottom: 1.5rem;
+    }
+    .card .price small {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #999;
+    }
+    label.field-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.35rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid #ddd;
+      border-radius: 0.5rem;
+      font-size: 0.95rem;
+      color: #111;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input[type="text"]:focus { border-color: #1071b8; }
+    .checkbox-group {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      font-size: 0.82rem;
+      color: #555;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+    .checkbox-group input[type="checkbox"] {
+      margin-top: 0.15rem;
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+      accent-color: #1071b8;
+      cursor: pointer;
+    }
+    .tc-link {
+      color: #1071b8;
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font: inherit;
+      padding: 0;
+    }
+    .tc-link:hover { color: #0d5a94; }
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 0.9rem;
+      border: none;
+      border-radius: 0.5rem;
+      background: #1071b8;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+      text-align: center;
+      text-decoration: none;
+    }
+    .btn:hover { background: #0d5a94; }
+    .btn.disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .card .secure {
+      text-align: center;
+      color: #aaa;
+      font-size: 0.75rem;
+      margin-top: 0.6rem;
+    }
+    .card .error-msg {
+      color: #e53e3e;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 0.5rem;
+      min-height: 1.2em;
+    }
+
+    /* ── T&C MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: #fff;
+      border-radius: 1rem;
+      max-width: 680px;
+      width: 100%;
+      max-height: 85dvh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid #eee;
+      flex-shrink: 0;
+    }
+    .modal-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111;
+    }
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #f3f4f6;
+      color: #666;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: #e5e7eb; }
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      color: #444;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+    .modal-body h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #111;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+    .modal-body h4:first-child { margin-top: 0; }
+    .modal-body p { margin-bottom: 0.6rem; }
+    .modal-body ul {
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .modal-body li { margin-bottom: 0.3rem; }
+    .modal-body .declaration {
+      margin-top: 1.25rem;
+      padding: 1.25rem;
+      background: #f0f7fc;
+      border: 1px solid #d0e7f5;
+      border-radius: 0.5rem;
+    }
+    .modal-body .declaration h4 { margin-top: 0; }
+  </style>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1367108322051761');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
+</head>
+
+<body>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1367108322051761&ev=PageView&noscript=1" /></noscript>
+
+  <div class="page">
+
+    <!-- LEFT: Program Info -->
+    <div class="info">
+      <div class="badge">4-Week Mind-Body Program</div>
+      <h1>The <span>Suri</span> Program</h1>
+      <p class="lead">
+        A structured healing journey to retrain your brain, calm your nervous system,
+        and finally break free from chronic pain — even if nothing else has worked.
+      </p>
+
+      <ul class="features">
+        <li>
+          <div class="num">1</div>
+          <div><strong>Mind-Body Awareness</strong> — understand how emotions, stress, and beliefs create and maintain pain patterns.</div>
+        </li>
+        <li>
+          <div class="num">2</div>
+          <div><strong>Nervous System Reset</strong> — somatic calming tools to reduce flare-ups and help your brain feel safe again.</div>
+        </li>
+        <li>
+          <div class="num">3</div>
+          <div><strong>Emotional Release &amp; EFT</strong> — guided tapping and journalling to release tension stored in the body.</div>
+        </li>
+        <li>
+          <div class="num">4</div>
+          <div><strong>Rewire &amp; Return to Movement</strong> — shift fear-based beliefs and rebuild confidence to move freely.</div>
+        </li>
+      </ul>
+
+      <hr class="divider" />
+
+      <p class="quote">
+        "At 32, a doctor told me to just live with my pain. I found a different way — and healed.
+        Now I help others do the same."
+        <strong>— Avnita Suri, Lifestyle Prescriptions Health Coach</strong>
+      </p>
+    </div>
+
+    <!-- RIGHT: Checkout Card -->
+    <div class="card">
+      <h2>Enrol Now</h2>
+      <p class="card-sub">Secure your place on the program</p>
+      <div class="price">&pound;199 <small>/ one-time</small></div>
+
+      <label class="field-label" for="fullName">Full Name</label>
+      <input type="text" id="fullName" placeholder="Enter your full name" autocomplete="name" />
+
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" id="ageCheck" />
+          I confirm that I am over 18 years of age.
+        </label>
+        <label>
+          <input type="checkbox" id="termsCheck" />
+          I accept the <button type="button" class="tc-link" id="openTerms">terms and conditions</button>.
+        </label>
+      </div>
+
+      <a id="enrolBtn" class="btn disabled" href="https://buy.stripe.com/5kQbJ2876duC5Zs1HL33W00" target="_blank">
+        Proceed to Payment
+      </a>
+      <p class="error-msg" id="errorMsg"></p>
+      <p class="secure">Secure payment via Stripe</p>
+    </div>
+
+  </div>
+
+  <!-- T&C MODAL -->
+  <div class="modal-overlay" id="tcModal">
+    <div class="modal" id="tcModalInner">
+      <div class="modal-header">
+        <h3>Terms &amp; Conditions</h3>
+        <button class="modal-close" id="closeModal" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4>Important Information Before Joining the Programme</h4>
+        <p>
+          This programme provides education, coaching and group support for people interested in exploring
+          mind-body approaches to chronic pain and persistent symptoms.
+        </p>
+        <p>
+          The programme is not medical care, psychotherapy, physiotherapy, diagnosis, treatment, or a
+          substitute for advice from your GP, consultant, pain clinic, therapist or other qualified healthcare
+          professional.
+        </p>
+        <p>By joining the programme, you understand and agree that:</p>
+        <ul>
+          <li>The programme is educational and supportive in nature.</li>
+          <li>No diagnosis will be made during the programme.</li>
+          <li>No individual medical advice will be given.</li>
+          <li>You remain responsible for your own health decisions.</li>
+          <li>You should not stop, reduce or change any medication, treatment, exercise plan or medical care
+            without first speaking to an appropriately qualified healthcare professional.</li>
+          <li>Participation is voluntary, and you should only take part in exercises or reflections that feel safe
+            and appropriate for you.</li>
+          <li>Results vary from person to person, and no specific outcome, improvement, reduction in pain, or
+            recovery is promised or guaranteed.</li>
+        </ul>
+        <p>
+          The programme may include education about chronic pain, the nervous system, stress, emotions,
+          fear, attention, self-reflection, journaling, gentle awareness practices and behavioural tools. Some
+          people may find this material emotionally activating, challenging or uncomfortable at times. You are
+          encouraged to go at your own pace, pause when needed, and seek appropriate professional
+          support if difficult feelings arise.
+        </p>
+
+        <h4>Medical Responsibility</h4>
+        <p>
+          You acknowledge that persistent symptoms can sometimes be associated with underlying medical
+          conditions. Participation in this programme is not intended to replace appropriate medical
+          assessment. You confirm that you have consulted a healthcare professional where appropriate
+          regarding your symptoms and will continue to seek medical advice for any concerns about your
+          health.
+        </p>
+        <p>
+          This programme is not suitable as a replacement for urgent or specialist medical assessment. You
+          should seek medical advice promptly if you have new, severe, unexplained or rapidly worsening
+          symptoms, or if you are concerned about your health. In an emergency, contact emergency
+          services or attend A&amp;E.
+        </p>
+
+        <h4>Crisis Support</h4>
+        <p>
+          The programme does not provide crisis support. If you are experiencing thoughts of harming
+          yourself or others, feel unsafe, or are in immediate distress, please contact emergency services,
+          NHS 111, your GP, a crisis helpline, or your local urgent mental health support service.
+        </p>
+
+        <h4>Testimonials and Personal Stories</h4>
+        <p>
+          Any examples, testimonials, case studies or personal recovery stories shared during the
+          programme are provided for educational and illustrative purposes only. They do not constitute a
+          promise, prediction or guarantee that any participant will achieve similar results.
+        </p>
+
+        <h4>Group Participation and Confidentiality</h4>
+        <p>
+          Because this is a group programme, participants are expected to respect each other's privacy. You
+          agree not to record sessions, share other participants' personal information, or discuss identifiable
+          details outside the group. While reasonable steps are taken to create a respectful and confidential
+          space, absolute confidentiality cannot be guaranteed in a group setting.
+        </p>
+
+        <h4>Online Participation</h4>
+        <p>
+          Online participation involves some risks, including technical disruption, privacy risks, or the
+          possibility that others in your environment may overhear. You are responsible for joining from a
+          private and safe space where possible.
+        </p>
+
+        <h4>Technical Access and Programme Materials</h4>
+        <p>
+          While every reasonable effort will be made to provide access to live sessions, recordings,
+          programme materials and online resources, occasional technical difficulties, platform outages,
+          internet disruptions, software issues or other unforeseen circumstances may occur.
+        </p>
+        <p>
+          Recordings, session replays, downloadable resources or other programme materials
+          may occasionally be delayed, temporarily unavailable, incomplete or inaccessible. Access to
+          programme content cannot be guaranteed at all times.
+        </p>
+        <p>
+          Where such issues arise, we will make reasonable efforts to resolve them as quickly as possible
+          and restore access where feasible. However, temporary interruptions, delays or loss of access shall
+          not constitute a breach of the programme agreement and do not guarantee compensation, refunds
+          or extensions.
+        </p>
+        <p>
+          Participants are responsible for ensuring they have appropriate internet access, devices and
+          software necessary to participate in the programme.
+        </p>
+
+        <h4>Recordings and Intellectual Property</h4>
+        <p>
+          Live sessions may be recorded and made available to programme participants. By participating,
+          you understand that your name, comments or contributions may appear in programme recordings
+          unless you choose not to participate verbally or via chat.
+        </p>
+        <p>
+          Programme materials, recordings, worksheets and educational content are provided for personal
+          use only and may not be copied, distributed, reproduced, sold or shared without written permission.
+        </p>
+
+        <h4>Limitation of Liability</h4>
+        <p>
+          To the maximum extent permitted by law, the programme facilitator, coaches and associated team
+          members shall not be liable for any loss, injury, damage, claim or adverse outcome arising from
+          participation in the programme, except where such liability cannot legally be excluded.
+        </p>
+
+        <h4>Acknowledgement and Consent</h4>
+        <p>
+          Please read this information carefully. If anything is unclear, please ask before enrolling. By
+          enrolling, proceeding with payment, or participating in the programme, you confirm that you have
+          read and understood this information, that you are choosing to participate voluntarily, and that you
+          understand the programme is educational and supportive rather than medical or therapeutic
+          treatment.
+        </p>
+
+        <div class="declaration">
+          <h4>Participant Declaration</h4>
+          <p>
+            I confirm that I have read and understood the programme disclaimer. I understand that this
+            programme is educational and supportive, not medical treatment, diagnosis, psychotherapy or a
+            substitute for professional healthcare advice. I understand that I remain responsible for my own
+            health decisions and should seek medical advice where appropriate.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── CONFIG ──
+    var CONSENT_LOG_URL = 'https://script.google.com/macros/s/AKfycbzD9m6I0Z5BOwRu5SBruD20mBAVBn0zfSPd4xG4Hf0MjlEzedOuSbTJ0QfifautvHQtMw/exec';
+
+    // ── ELEMENTS ──
+    var nameInput = document.getElementById('fullName');
+    var ageCheck = document.getElementById('ageCheck');
+    var termsCheck = document.getElementById('termsCheck');
+    var enrolBtn = document.getElementById('enrolBtn');
+    var errorMsg = document.getElementById('errorMsg');
+    var tcModal = document.getElementById('tcModal');
+    var tcModalInner = document.getElementById('tcModalInner');
+    var openTerms = document.getElementById('openTerms');
+    var closeModal = document.getElementById('closeModal');
+
+    // ── VALIDATION ──
+    function validate() {
+      var valid = nameInput.value.trim().length > 0 && ageCheck.checked && termsCheck.checked;
+      if (valid) {
+        enrolBtn.classList.remove('disabled');
+      } else {
+        enrolBtn.classList.add('disabled');
+      }
+      errorMsg.textContent = '';
+    }
+
+    nameInput.addEventListener('input', validate);
+    ageCheck.addEventListener('change', validate);
+    termsCheck.addEventListener('change', validate);
+
+    // ── ENROL ──
+    enrolBtn.addEventListener('click', function (e) {
+      if (enrolBtn.classList.contains('disabled')) {
+        e.preventDefault();
+        return;
+      }
+      var data = {
+        name: nameInput.value.trim(),
+        age_confirmed: ageCheck.checked,
+        terms_accepted: termsCheck.checked,
+        timestamp: new Date().toISOString(),
+        page: window.location.href
+      };
+      if (CONSENT_LOG_URL) {
+        var blob = new Blob([JSON.stringify(data)], { type: 'text/plain' });
+        navigator.sendBeacon(CONSENT_LOG_URL, blob);
+      }
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'InitiateCheckout');
+      }
+    });
+
+    // ── T&C MODAL ──
+    openTerms.addEventListener('click', function (e) {
+      e.preventDefault();
+      tcModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeModal.addEventListener('click', function () {
+      tcModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    tcModal.addEventListener('click', function (e) {
+      if (!tcModalInner.contains(e.target)) {
+        tcModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && tcModal.classList.contains('active')) {
+        tcModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+
+</html>
