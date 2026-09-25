@@ -861,6 +861,204 @@
       line-height: 1.5;
     }
 
+    /* ─── FLAGSHIP PROGRAM ─── */
+    .flagship {
+      padding: 5rem 1.5rem;
+      background: linear-gradient(160deg, #fdf5f6 0%, #f5e0e4 40%, var(--cream) 100%);
+    }
+
+    .flagship-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .flagship-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(116, 22, 28, 0.08);
+      color: var(--accent-deep);
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .flagship-content h2 {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .flagship-content h2 span {
+      color: var(--accent-deep);
+    }
+
+    .flagship-content > p {
+      color: var(--text-soft);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    .flagship-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .flagship-steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--text-soft);
+    }
+
+    .flagship-step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--accent-deep);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 0.1rem;
+    }
+
+    .flagship-steps li strong {
+      color: var(--text);
+    }
+
+    .flagship-card {
+      background: var(--white);
+      border-radius: 1.5rem;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .flagship-card-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--mauve);
+      margin-bottom: 0.5rem;
+    }
+
+    .flagship-card h3 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+
+    .flagship-price {
+      margin-bottom: 0.5rem;
+    }
+
+    .flagship-price .amount {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent-deep);
+    }
+
+    .flagship-price .period {
+      font-size: 1rem;
+      color: var(--text-soft);
+      font-weight: 500;
+    }
+
+    .flagship-includes {
+      list-style: none;
+      text-align: left;
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .flagship-includes li {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .flagship-includes li::before {
+      content: "\2713";
+      color: var(--accent-deep);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .btn-flagship {
+      display: inline-block;
+      background: var(--accent-deep);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 0.5rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: background 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      margin-top: 0.5rem;
+    }
+
+    .btn-flagship:hover {
+      background: #5a1018;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(116, 22, 28, 0.3);
+    }
+
+    .flagship-card-note {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-top: 0.75rem;
+    }
+
+    .flagship-quote {
+      font-style: italic;
+      color: var(--text-soft);
+      border-left: 3px solid var(--blush);
+      padding-left: 1rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .flagship-quote strong {
+      display: block;
+      font-style: normal;
+      color: var(--text);
+      margin-top: 0.4rem;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 768px) {
+      .flagship { padding: 3rem 1.25rem; }
+      .flagship-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .flagship-content h2 { font-size: 2rem; }
+      .flagship-card { padding: 2rem 1.5rem; }
+    }
+
     /* ─── CTA ─── */
     .cta-section {
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 60%, #5a1018 100%);
@@ -1055,6 +1253,7 @@
         <a href="#about">About</a>
         <a href="#method">Method</a>
         <a href="#stories">Success Stories</a>
+        <a href="#program">The Suri Program</a>
         <a href="#workshop">Workshop</a>
         <a href="https://www.freedomfromchronicpain.co.uk/" class="nav-cta">Reserve Your Spot</a>
       </div>
@@ -1317,6 +1516,66 @@
       <iframe id="videoModalFrame" src="" allowfullscreen></iframe>
     </div>
   </div>
+
+  <!-- THE SURI PROGRAM — Flagship -->
+  <section class="flagship reveal" id="program">
+    <div class="flagship-inner">
+      <div class="flagship-content">
+        <div class="flagship-badge">Flagship 4-Week Program</div>
+        <h2>The <span>Suri</span> Program</h2>
+        <p>
+          A structured healing journey to retrain your brain, calm your nervous system,
+          and finally break free from chronic pain — even if nothing else has worked.
+        </p>
+
+        <ul class="flagship-steps">
+          <li>
+            <div class="flagship-step-num">1</div>
+            <div><strong>Mind-Body Awareness</strong> — understand how emotions, stress, and beliefs create and maintain pain patterns.</div>
+          </li>
+          <li>
+            <div class="flagship-step-num">2</div>
+            <div><strong>Nervous System Reset</strong> — somatic calming tools to reduce flare-ups and help your brain feel safe again.</div>
+          </li>
+          <li>
+            <div class="flagship-step-num">3</div>
+            <div><strong>Emotional Release &amp; EFT</strong> — guided tapping and journalling to release tension stored in the body.</div>
+          </li>
+          <li>
+            <div class="flagship-step-num">4</div>
+            <div><strong>Rewire &amp; Return to Movement</strong> — shift fear-based beliefs and rebuild confidence to move freely.</div>
+          </li>
+        </ul>
+
+        <blockquote class="flagship-quote">
+          "At 32, a doctor told me to just live with my pain. I found a different way — and healed.
+          Now I help others do the same."
+          <strong>— Avnita Suri, Lifestyle Prescriptions Health Coach</strong>
+        </blockquote>
+      </div>
+
+      <div class="flagship-card">
+        <p class="flagship-card-label">Complete Mind-Body Healing Program</p>
+        <h3>Enrol in The Suri Program</h3>
+        <div class="flagship-price">
+          <span class="amount">&pound;499</span>
+          <span class="period"> / one-time</span>
+        </div>
+
+        <ul class="flagship-includes">
+          <li>4 weeks of structured, guided healing</li>
+          <li>Live sessions with Avnita</li>
+          <li>EFT tapping &amp; emotional release tools</li>
+          <li>Nervous system calming practices</li>
+          <li>Journalling prompts &amp; belief rewiring</li>
+          <li>Movement confidence rebuilding</li>
+        </ul>
+
+        <a href="thesuriprogram" class="btn-flagship">Enrol Now &rarr;</a>
+        <p class="flagship-card-note">Secure checkout via Stripe &bull; Limited spots</p>
+      </div>
+    </div>
+  </section>
 
   <!-- WHAT YOU GET -->
   <section class="section section-alt reveal" id="workshop">
