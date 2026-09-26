@@ -17,29 +17,13 @@
     content="A science-informed mind-body approach to chronic pain. 100+ success stories worldwide." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.avnitasuri.com/" />
-  <meta property="og:image" content="https://www.avnitasuri.com/assets/images/avnita-hero.png" />
-
-  <!-- Meta Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1367108322051761');
-    fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1367108322051761&ev=PageView&noscript=1" /></noscript>
+  <meta property="og:image" content="https://www.avnitasuri.com/assets/images/Favourite.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
 
   <!-- Slick Carousel -->
@@ -75,18 +59,16 @@
     }
 
     :root {
-      --cream: #F7F7FF;
+      --cream: #faf7f2;
       --white: #ffffff;
-      --warm-gray: #f3eaeb;
+      --warm-gray: #f3ede5;
       --text: #2d2a26;
-      --text-soft: #60656F;
-      --accent: #E55381;
-      --accent-deep: #74161c;
-      --accent-glow: #fdf5f6;
-      --blush: #E3B9BC;
-      --mauve: #BFA4A4;
-      --serif: 'Playfair Display', Georgia, serif;
-      --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+      --text-soft: #6b6560;
+      --accent: #3a8a8e;
+      --accent-deep: #2c6e72;
+      --accent-glow: #e8f4f5;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, -apple-system, sans-serif;
     }
 
     html {
@@ -102,26 +84,6 @@
       padding-bottom: 3.5rem;
     }
 
-    /* ─── SCROLL REVEAL ─── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-
-    @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
-    }
-
     img {
       max-width: 100%;
       height: auto;
@@ -129,6 +91,17 @@
 
     a {
       text-decoration: none;
+    }
+
+    /* ─── DEMO BANNER ─── */
+    .demo-banner {
+      background: #fef3cd;
+      color: #856404;
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
     }
 
     /* ─── NAV ─── */
@@ -154,9 +127,8 @@
     .nav-logo {
       font-family: var(--serif);
       font-size: 1.5rem;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--text);
-      letter-spacing: 0.01em;
     }
 
     .nav-links {
@@ -169,7 +141,7 @@
       color: var(--text-soft);
       font-size: 0.875rem;
       font-weight: 500;
-      transition: color 0.4s ease;
+      transition: color 0.2s;
     }
 
     .nav-links a:hover {
@@ -182,13 +154,11 @@
       padding: 0.5rem 1.25rem !important;
       border-radius: 0.5rem;
       font-weight: 600 !important;
-      transition: background 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      transition: background 0.2s;
     }
 
     .nav-cta:hover {
       background: var(--accent-deep) !important;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(229, 83, 129, 0.25);
     }
 
     /* ─── CONTAINER ─── */
@@ -208,7 +178,7 @@
     .section-heading {
       font-family: var(--serif);
       font-size: 2.75rem;
-      font-weight: 700;
+      font-weight: 500;
       color: var(--text);
       text-align: center;
       margin-bottom: 1rem;
@@ -216,7 +186,7 @@
     }
 
     .section-heading span {
-      color: var(--mauve);
+      color: var(--accent);
     }
 
     .section-sub {
@@ -229,7 +199,7 @@
 
     /* ─── HERO ─── */
     .hero {
-      background: linear-gradient(160deg, var(--cream) 0%, var(--accent-glow) 40%, #f5e0e4 70%, var(--cream) 100%);
+      background: linear-gradient(160deg, var(--cream) 0%, var(--accent-glow) 50%, var(--cream) 100%);
       padding: 5rem 1.5rem 4rem;
     }
 
@@ -245,14 +215,14 @@
     .hero h1 {
       font-family: var(--serif);
       font-size: 3.25rem;
-      font-weight: 700;
+      font-weight: 500;
       line-height: 1.15;
       color: var(--text);
       margin-bottom: 1.25rem;
     }
 
     .hero h1 span {
-      color: var(--accent-deep);
+      color: var(--accent);
     }
 
     .hero-sub {
@@ -267,7 +237,7 @@
       align-items: center;
       gap: 0.5rem;
       background: var(--accent-glow);
-      color: var(--accent-deep);
+      color: var(--accent);
       padding: 0.375rem 1rem;
       border-radius: 2rem;
       font-size: 0.8rem;
@@ -285,7 +255,7 @@
     .hero-quote {
       font-style: italic;
       color: var(--text-soft);
-      border-left: 3px solid var(--blush);
+      border-left: 3px solid var(--accent);
       padding-left: 1rem;
       margin: 1.75rem 0;
       font-size: 0.95rem;
@@ -329,13 +299,12 @@
       border-radius: 0.5rem;
       font-weight: 600;
       font-size: 1rem;
-      transition: background 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      transition: background 0.2s, transform 0.15s;
     }
 
     .btn:hover {
       background: var(--accent-deep);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(229, 83, 129, 0.3);
+      transform: translateY(-1px);
     }
 
     .btn-outline {
@@ -348,14 +317,12 @@
       border-radius: 0.5rem;
       font-weight: 600;
       font-size: 0.9rem;
-      transition: background 0.4s ease, color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      transition: all 0.2s;
     }
 
     .btn-outline:hover {
       background: var(--accent);
       color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(229, 83, 129, 0.2);
     }
 
     .btn-white {
@@ -366,13 +333,12 @@
       border-radius: 0.5rem;
       font-weight: 600;
       font-size: 1rem;
-      transition: background 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      transition: background 0.2s, transform 0.15s;
     }
 
     .btn-white:hover {
       background: var(--cream);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(-1px);
     }
 
     /* ─── TRUST BAR ─── */
@@ -399,8 +365,8 @@
     .trust-stat .number {
       font-family: var(--serif);
       font-size: 2.25rem;
-      font-weight: 700;
-      color: var(--accent-deep);
+      font-weight: 600;
+      color: var(--accent);
     }
 
     .trust-stat .label {
@@ -427,13 +393,13 @@
     .about-content h2 {
       font-family: var(--serif);
       font-size: 2.5rem;
-      font-weight: 700;
+      font-weight: 500;
       margin-bottom: 1.5rem;
       line-height: 1.2;
     }
 
     .about-content h2 span {
-      color: var(--mauve);
+      color: var(--accent);
     }
 
     .about-content p {
@@ -459,7 +425,7 @@
     .about-list-dot {
       width: 8px;
       height: 8px;
-      background: var(--blush);
+      background: var(--accent);
       border-radius: 50%;
       margin-top: 0.5rem;
       flex-shrink: 0;
@@ -477,13 +443,12 @@
       border: 1px solid rgba(0, 0, 0, 0.06);
       border-radius: 1rem;
       overflow: hidden;
-      transition: border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
 
     .learn-card:hover {
-      border-color: var(--blush);
-      box-shadow: 0 8px 30px rgba(191, 164, 164, 0.25);
-      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(58, 138, 142, 0.1);
     }
 
     .learn-card img {
@@ -499,7 +464,7 @@
     .learn-card h3 {
       font-family: var(--serif);
       font-size: 1.3rem;
-      font-weight: 600;
+      font-weight: 500;
       margin-bottom: 0.5rem;
     }
 
@@ -512,7 +477,7 @@
     /* ─── TESTIMONIALS ─── */
     .testimonial-section {
       padding: 5rem 1.5rem;
-      background: var(--accent-glow);
+      background: var(--cream);
     }
 
     .v2-testimonial-slider .slick-dots li.slick-active button:before {
@@ -565,15 +530,13 @@
       border-radius: 1rem;
       padding: 1.75rem;
       background: var(--white);
-      transition: border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: border-color 0.3s;
       position: relative;
       min-height: 200px;
     }
 
     .v2-tcard-inner:hover {
-      border-color: var(--blush);
-      box-shadow: 0 6px 24px rgba(191, 164, 164, 0.18);
-      transform: translateY(-3px);
+      border-color: var(--accent);
     }
 
     .v2-tcard-photo {
@@ -588,7 +551,7 @@
 
     .v2-tcard-quote {
       font-size: 2rem;
-      color: var(--blush);
+      color: var(--accent);
       line-height: 1;
       margin-bottom: 0.5rem;
       font-family: var(--serif);
@@ -611,209 +574,6 @@
       padding-right: 0.25rem;
     }
 
-    .v2-tcard-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 1rem;
-    }
-
-    .v2-tcard-video {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.375rem;
-      background: var(--accent-glow);
-      color: var(--accent);
-      padding: 0.3rem 0.75rem;
-      border-radius: 2rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      transition: background 0.4s ease, color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .v2-tcard-video:hover {
-      background: var(--accent);
-      color: white;
-      transform: scale(1.05);
-    }
-
-    .v2-tcard-video svg {
-      width: 12px;
-      height: 12px;
-      fill: currentColor;
-    }
-
-    /* ─── VIDEO TESTIMONIALS ─── */
-    .video-testimonials {
-      padding: 5rem 1.5rem;
-      background: var(--white);
-    }
-
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-
-    .video-card {
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      border-radius: 1rem;
-      overflow: hidden;
-      background: var(--cream);
-      transition: border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: pointer;
-    }
-
-    .video-card:hover {
-      border-color: var(--blush);
-      box-shadow: 0 8px 30px rgba(191, 164, 164, 0.25);
-      transform: translateY(-4px);
-    }
-
-    .video-thumb {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: #1a1a1a;
-    }
-
-    .video-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
-    }
-
-    .video-card:hover .video-thumb img {
-      transform: scale(1.05);
-      filter: brightness(0.85);
-    }
-
-    .video-play-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 64px;
-      height: 64px;
-      background: rgba(229, 83, 129, 0.9);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .video-card:hover .video-play-btn {
-      background: var(--accent);
-      transform: translate(-50%, -50%) scale(1.15);
-    }
-
-    .video-play-btn svg {
-      width: 24px;
-      height: 24px;
-      fill: white;
-      margin-left: 3px;
-    }
-
-    .video-card-body {
-      padding: 1rem 1.5rem 1.25rem;
-    }
-
-    .video-card-body h3 {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .video-card-body p {
-      color: var(--text-soft);
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
-    /* Video Modal */
-    .video-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 9999;
-      background: rgba(0, 0, 0, 0.85);
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .video-modal.active {
-      display: flex;
-      animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes modalFadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .video-modal-inner {
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      aspect-ratio: 16 / 9;
-      background: #000;
-      border-radius: 0.75rem;
-      overflow: hidden;
-    }
-
-    .video-modal-inner iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .video-modal-close {
-      position: absolute;
-      top: -40px;
-      right: 0;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      line-height: 1;
-      padding: 0.25rem;
-      transition: transform 0.2s;
-    }
-
-    .video-modal-close:hover {
-      transform: scale(1.2) rotate(90deg);
-    }
-
-    @media (max-width: 768px) {
-      .video-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .video-testimonials {
-        padding: 3rem 1.25rem;
-      }
-
-      .video-play-btn {
-        width: 52px;
-        height: 52px;
-      }
-
-      .video-play-btn svg {
-        width: 20px;
-        height: 20px;
-      }
-    }
-
     /* ─── FEATURES ─── */
     .features-grid {
       display: grid;
@@ -826,13 +586,12 @@
       border: 1px solid rgba(0, 0, 0, 0.06);
       border-radius: 1rem;
       padding: 2rem;
-      transition: border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
 
     .feature-card:hover {
-      border-color: var(--blush);
-      box-shadow: 0 8px 30px rgba(191, 164, 164, 0.25);
-      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(58, 138, 142, 0.1);
     }
 
     .feature-icon {
@@ -843,7 +602,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent-deep);
+      color: var(--accent);
       font-size: 1.25rem;
       margin-bottom: 1.25rem;
     }
@@ -851,7 +610,7 @@
     .feature-card h3 {
       font-family: var(--serif);
       font-size: 1.3rem;
-      font-weight: 600;
+      font-weight: 500;
       margin-bottom: 0.5rem;
     }
 
@@ -862,206 +621,35 @@
     }
 
     /* ─── FLAGSHIP PROGRAM ─── */
-    .flagship {
-      padding: 5rem 1.5rem;
-      background: linear-gradient(160deg, #fdf5f6 0%, #f5e0e4 40%, var(--cream) 100%);
-    }
-
-    .flagship-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 3.5rem;
-      align-items: center;
-    }
-
-    .flagship-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(116, 22, 28, 0.08);
-      color: var(--accent-deep);
-      padding: 0.4rem 1rem;
-      border-radius: 2rem;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-    }
-
-    .flagship-content h2 {
-      font-family: var(--serif);
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-
-    .flagship-content h2 span {
-      color: var(--accent-deep);
-    }
-
-    .flagship-content > p {
-      color: var(--text-soft);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin-bottom: 1.75rem;
-    }
-
-    .flagship-steps {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .flagship-steps li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.85rem;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: var(--text-soft);
-    }
-
-    .flagship-step-num {
-      flex-shrink: 0;
-      width: 32px;
-      height: 32px;
-      background: var(--accent-deep);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-top: 0.1rem;
-    }
-
-    .flagship-steps li strong {
-      color: var(--text);
-    }
-
-    .flagship-card {
-      background: var(--white);
-      border-radius: 1.5rem;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-      padding: 2.5rem 2rem;
-      text-align: center;
-    }
-
-    .flagship-card-label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--mauve);
-      margin-bottom: 0.5rem;
-    }
-
-    .flagship-card h3 {
-      font-family: var(--serif);
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 1.25rem;
-    }
-
-    .flagship-price {
-      margin-bottom: 0.5rem;
-    }
-
-    .flagship-price .amount {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--accent-deep);
-    }
-
-    .flagship-price .period {
-      font-size: 1rem;
-      color: var(--text-soft);
-      font-weight: 500;
-    }
-
-    .flagship-includes {
-      list-style: none;
-      text-align: left;
-      margin: 1.5rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .flagship-includes li {
-      font-size: 0.88rem;
-      color: var(--text-soft);
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-    }
-
-    .flagship-includes li::before {
-      content: "\2713";
-      color: var(--accent-deep);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .btn-flagship {
-      display: inline-block;
-      background: var(--accent-deep);
-      color: white;
-      padding: 1rem 2.5rem;
-      border-radius: 0.5rem;
-      font-weight: 700;
-      font-size: 1.05rem;
-      transition: background 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-      margin-top: 0.5rem;
-    }
-
-    .btn-flagship:hover {
-      background: #5a1018;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(116, 22, 28, 0.3);
-    }
-
-    .flagship-card-note {
-      font-size: 0.78rem;
-      color: var(--text-soft);
-      margin-top: 0.75rem;
-    }
-
-    .flagship-quote {
-      font-style: italic;
-      color: var(--text-soft);
-      border-left: 3px solid var(--blush);
-      padding-left: 1rem;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .flagship-quote strong {
-      display: block;
-      font-style: normal;
-      color: var(--text);
-      margin-top: 0.4rem;
-      font-size: 0.82rem;
-    }
-
-    @media (max-width: 768px) {
-      .flagship { padding: 3rem 1.25rem; }
-      .flagship-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .flagship-content h2 { font-size: 2rem; }
-      .flagship-card { padding: 2rem 1.5rem; }
-    }
+    .flagship { padding: 5rem 1.5rem; background: linear-gradient(160deg, var(--accent-glow) 0%, #dff0f1 40%, var(--cream) 100%); }
+    .flagship-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: center; }
+    .flagship-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(44, 110, 114, 0.08); color: var(--accent-deep); padding: 0.4rem 1rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .flagship-content h2 { font-family: var(--serif); font-size: 2.5rem; font-weight: 500; line-height: 1.2; margin-bottom: 1rem; color: var(--text); }
+    .flagship-content h2 span { color: var(--accent); }
+    .flagship-content > p { color: var(--text-soft); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.75rem; }
+    .flagship-steps { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+    .flagship-steps li { display: flex; align-items: flex-start; gap: 0.85rem; font-size: 0.95rem; line-height: 1.55; color: var(--text-soft); }
+    .flagship-step-num { flex-shrink: 0; width: 32px; height: 32px; background: var(--accent-deep); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; margin-top: 0.1rem; }
+    .flagship-steps li strong { color: var(--text); }
+    .flagship-card { background: var(--white); border-radius: 1.5rem; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08); padding: 2.5rem 2rem; text-align: center; }
+    .flagship-card-label { font-size: 0.85rem; font-weight: 600; color: var(--text-soft); margin-bottom: 0.5rem; }
+    .flagship-card h3 { font-family: var(--serif); font-size: 1.6rem; font-weight: 500; color: var(--text); margin-bottom: 1.25rem; }
+    .flagship-price { margin-bottom: 0.5rem; }
+    .flagship-price .amount { font-size: 3rem; font-weight: 800; color: var(--accent-deep); }
+    .flagship-price .period { font-size: 1rem; color: var(--text-soft); font-weight: 500; }
+    .flagship-includes { list-style: none; text-align: left; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
+    .flagship-includes li { font-size: 0.88rem; color: var(--text-soft); display: flex; align-items: flex-start; gap: 0.5rem; }
+    .flagship-includes li::before { content: "\2713"; color: var(--accent-deep); font-weight: 700; flex-shrink: 0; }
+    .btn-flagship { display: inline-block; background: var(--accent-deep); color: white; padding: 1rem 2.5rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.05rem; transition: background 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; margin-top: 0.5rem; }
+    .btn-flagship:hover { background: #1d5054; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(44, 110, 114, 0.3); }
+    .flagship-card-note { font-size: 0.78rem; color: var(--text-soft); margin-top: 0.75rem; }
+    .flagship-quote { font-style: italic; color: var(--text-soft); border-left: 3px solid var(--accent); padding-left: 1rem; margin-top: 2rem; font-size: 0.9rem; line-height: 1.6; }
+    .flagship-quote strong { display: block; font-style: normal; color: var(--text); margin-top: 0.4rem; font-size: 0.82rem; }
+    @media (max-width: 768px) { .flagship { padding: 3rem 1.25rem; } .flagship-inner { grid-template-columns: 1fr; gap: 2rem; } .flagship-content h2 { font-size: 2rem; } .flagship-card { padding: 2rem 1.5rem; } }
 
     /* ─── CTA ─── */
     .cta-section {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 60%, #5a1018 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
       padding: 5rem 1.5rem;
       text-align: center;
       color: white;
@@ -1070,7 +658,7 @@
     .cta-section h2 {
       font-family: var(--serif);
       font-size: 2.75rem;
-      font-weight: 700;
+      font-weight: 500;
       color: white;
       margin-bottom: 1rem;
     }
@@ -1120,13 +708,12 @@
       padding: 0.5rem 1.25rem;
       border-radius: 0.375rem;
       font-size: 0.85rem;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      transition: transform 0.2s;
       white-space: nowrap;
     }
 
     .sticky-cta a:hover {
       transform: scale(1.05);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
     }
 
     /* ─── RESPONSIVE ─── */
@@ -1245,7 +832,12 @@
 
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- DEMO NOTICE -->
+  <div class="demo-banner">
+    DEMO PREVIEW — This is a redesign proposal. The live site at avnitasuri.com remains unchanged.
+  </div>
+
+  <!-- NAVIGATION (new — current site has none) -->
   <nav class="nav">
     <div class="nav-inner">
       <a href="#" class="nav-logo">Avnita Suri</a>
@@ -1286,13 +878,13 @@
         </div>
       </div>
       <div class="hero-img">
-        <img src="assets/images/avnita-hero.png" alt="Avnita Suri — Mind-Body Pain Healer" />
+        <img src="assets/images/Favourite.png" alt="Avnita Suri — Mind-Body Pain Healer" />
       </div>
     </div>
   </section>
 
   <!-- TRUST BAR — stats pulled out into clean horizontal row -->
-  <div class="trust-bar reveal">
+  <div class="trust-bar">
     <div class="trust-inner">
       <div class="trust-stat">
         <div class="number">3,500+</div>
@@ -1314,11 +906,11 @@
   </div>
 
   <!-- ABOUT AVNITA -->
-  <section class="section reveal" id="about">
+  <section class="section" id="about">
     <div class="container">
       <div class="about-grid">
         <div class="about-img">
-          <img src="assets/images/avnita-about.png" alt="Avnita Suri" />
+          <img src="assets/images/FavouriteNew2.1.png" alt="Avnita Suri" />
         </div>
         <div class="about-content">
           <h2>Your Guide to <span>Healing</span></h2>
@@ -1346,49 +938,49 @@
   </section>
 
   <!-- WHAT YOU'LL LEARN — cleaner cards on warm background -->
-  <section class="section section-alt reveal" id="method">
+  <section class="section section-alt" id="method">
     <div class="container">
       <h2 class="section-heading">What You'll <span>Learn</span> Inside</h2>
       <p class="section-sub">Six science-informed modules designed to address the root causes of chronic pain — not just
         the symptoms.</p>
       <div class="learn-grid">
         <div class="learn-card">
-          <img src="assets/images/Learn%201.png" alt="Mind-Body Awareness" />
+          <img src="assets/images/learn1.png" alt="Mind-Body Awareness" />
           <div class="learn-card-body">
             <h3>Mind-Body Awareness</h3>
             <p>Understand how emotions, stress, and beliefs influence chronic pain patterns.</p>
           </div>
         </div>
         <div class="learn-card">
-          <img src="assets/images/Learn%202.png" alt="Nervous System Reset" />
+          <img src="assets/images/learn2.jpg" alt="Nervous System Reset" />
           <div class="learn-card-body">
             <h3>Nervous System Reset</h3>
             <p>Learn tools to calm overwhelm, reduce flare-ups, and help your brain feel safe again.</p>
           </div>
         </div>
         <div class="learn-card">
-          <img src="assets/images/Learn%203.png" alt="EFT Tapping and Emotional Release" />
+          <img src="assets/images/learn3.png" alt="EFT Tapping and Emotional Release" />
           <div class="learn-card-body">
             <h3>EFT Tapping & Emotional Release</h3>
             <p>Step-by-step tapping practices to release emotional tension stored in the body.</p>
           </div>
         </div>
         <div class="learn-card">
-          <img src="assets/images/Learn%204.png" alt="Journalling for Healing" />
+          <img src="assets/images/learn4.png" alt="Journalling for Healing" />
           <div class="learn-card-body">
             <h3>Journalling for Healing</h3>
             <p>Guided prompts to uncover suppressed emotions, triggers, and pain loops.</p>
           </div>
         </div>
         <div class="learn-card">
-          <img src="assets/images/Learn%205.png" alt="Rewiring Fear and Beliefs" />
+          <img src="assets/images/learn5.png" alt="Rewiring Fear and Beliefs" />
           <div class="learn-card-body">
             <h3>Rewiring Fear & Beliefs</h3>
             <p>Learn how to shift fear-based thoughts that keep your pain cycle active.</p>
           </div>
         </div>
         <div class="learn-card">
-          <img src="assets/images/Learn%206.png" alt="Returning to Movement" />
+          <img src="assets/images/learn6.png" alt="Returning to Movement" />
           <div class="learn-card-body">
             <h3>Returning to Movement</h3>
             <p>Gentle practices to rebuild confidence, reduce pain fear, and move freely again.</p>
@@ -1399,7 +991,7 @@
   </section>
 
   <!-- TESTIMONIALS — light theme -->
-  <section class="testimonial-section reveal" id="stories">
+  <section class="testimonial-section" id="stories">
     <div class="container">
       <h2 class="section-heading">Real Stories, <span>Real Healing</span></h2>
       <p class="section-sub">Hear from people who broke free from chronic pain using the same approach taught in this
@@ -1410,158 +1002,25 @@
     </div>
   </section>
 
-  <!-- VIDEO TESTIMONIALS -->
-  <section class="video-testimonials reveal">
-    <div class="container">
-      <h2 class="section-heading">Hear It <span>In Their Words</span></h2>
-      <p class="section-sub">Watch real clients share their healing journeys.</p>
-      <div class="video-grid">
-
-        <div class="video-card" data-video="V9EogKAP16w">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/V9EogKAP16w/hqdefault.jpg" alt="Emily Isaac Johnson testimonial" />
-            <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          </div>
-          <div class="video-card-body">
-            <h3>Emily Isaac Johnson</h3>
-            <p>Back pain completely gone within weeks of starting the program.</p>
-          </div>
-        </div>
-
-        <div class="video-card" data-video="0G5TgZvoFFw">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/0G5TgZvoFFw/hqdefault.jpg" alt="Sean Bastock testimonial" />
-            <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          </div>
-          <div class="video-card-body">
-            <h3>Sean Bastock</h3>
-            <p>Impinged nerve and full-body pain — now completely pain-free.</p>
-          </div>
-        </div>
-
-        <div class="video-card" data-video="g9mucA-opv0">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/g9mucA-opv0/hqdefault.jpg" alt="Karla Boncompagni testimonial" />
-            <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          </div>
-          <div class="video-card-body">
-            <h3>Karla Boncompagni</h3>
-            <p>15 years of scoliosis, bursitis and herniated disc pain resolved.</p>
-          </div>
-        </div>
-
-        <div class="video-card" data-video="EQpBrAuMKjg">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/EQpBrAuMKjg/hqdefault.jpg" alt="Peggy Stewart testimonial" />
-            <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          </div>
-          <div class="video-card-body">
-            <h3>Peggy Stewart</h3>
-            <p>Interstitial cystitis and gastroparesis pain finally under control.</p>
-          </div>
-        </div>
-
-        <div class="video-card" data-video="pN7LJjqVV-w">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/pN7LJjqVV-w/hqdefault.jpg" alt="Emma Foulkes testimonial" />
-            <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          </div>
-          <div class="video-card-body">
-            <h3>Emma Foulkes</h3>
-            <p>Spinal stenosis — recovered in ways she never thought possible.</p>
-          </div>
-        </div>
-
-        <div class="video-card" data-video="_dH64cirExk">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/_dH64cirExk/hqdefault.jpg" alt="Sereatha Parrish Griffith testimonial" />
-            <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          </div>
-          <div class="video-card-body">
-            <h3>Sereatha Parrish Griffith</h3>
-            <p>Degenerative disc disorder pain gone after working with Avnita.</p>
-          </div>
-        </div>
-
-        <div class="video-card" data-video="OvivKt-N6nY">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/OvivKt-N6nY/hqdefault.jpg" alt="Robyn Mumford testimonial" />
-            <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          </div>
-          <div class="video-card-body">
-            <h3>Robyn Mumford</h3>
-            <p>The mind-body approach addressed what years of treatment couldn't.</p>
-          </div>
-        </div>
-
-        <div class="video-card" data-video="DB8G1z6WnUE">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/DB8G1z6WnUE/hqdefault.jpg" alt="Shemza testimonial" />
-            <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          </div>
-          <div class="video-card-body">
-            <h3>Shemza</h3>
-            <p>Persistent leg pain resolved through the mind-body connection.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Video Modal -->
-  <div class="video-modal" id="videoModal">
-    <div class="video-modal-inner">
-      <button class="video-modal-close" id="videoModalClose">&times;</button>
-      <iframe id="videoModalFrame" src="" allowfullscreen></iframe>
-    </div>
-  </div>
-
   <!-- THE SURI PROGRAM — Flagship -->
-  <section class="flagship reveal" id="program">
+  <section class="flagship" id="program">
     <div class="flagship-inner">
       <div class="flagship-content">
         <div class="flagship-badge">Flagship 4-Week Program</div>
         <h2>The <span>Suri</span> Program</h2>
-        <p>
-          A structured healing journey to retrain your brain, calm your nervous system,
-          and finally break free from chronic pain — even if nothing else has worked.
-        </p>
-
+        <p>A structured healing journey to retrain your brain, calm your nervous system, and finally break free from chronic pain — even if nothing else has worked.</p>
         <ul class="flagship-steps">
-          <li>
-            <div class="flagship-step-num">1</div>
-            <div><strong>Mind-Body Awareness</strong> — understand how emotions, stress, and beliefs create and maintain pain patterns.</div>
-          </li>
-          <li>
-            <div class="flagship-step-num">2</div>
-            <div><strong>Nervous System Reset</strong> — somatic calming tools to reduce flare-ups and help your brain feel safe again.</div>
-          </li>
-          <li>
-            <div class="flagship-step-num">3</div>
-            <div><strong>Emotional Release &amp; EFT</strong> — guided tapping and journalling to release tension stored in the body.</div>
-          </li>
-          <li>
-            <div class="flagship-step-num">4</div>
-            <div><strong>Rewire &amp; Return to Movement</strong> — shift fear-based beliefs and rebuild confidence to move freely.</div>
-          </li>
+          <li><div class="flagship-step-num">1</div><div><strong>Mind-Body Awareness</strong> — understand how emotions, stress, and beliefs create and maintain pain patterns.</div></li>
+          <li><div class="flagship-step-num">2</div><div><strong>Nervous System Reset</strong> — somatic calming tools to reduce flare-ups and help your brain feel safe again.</div></li>
+          <li><div class="flagship-step-num">3</div><div><strong>Emotional Release &amp; EFT</strong> — guided tapping and journalling to release tension stored in the body.</div></li>
+          <li><div class="flagship-step-num">4</div><div><strong>Rewire &amp; Return to Movement</strong> — shift fear-based beliefs and rebuild confidence to move freely.</div></li>
         </ul>
-
-        <blockquote class="flagship-quote">
-          "At 32, a doctor told me to just live with my pain. I found a different way — and healed.
-          Now I help others do the same."
-          <strong>— Avnita Suri, Lifestyle Prescriptions Health Coach</strong>
-        </blockquote>
+        <blockquote class="flagship-quote">"At 32, a doctor told me to just live with my pain. I found a different way — and healed. Now I help others do the same."<strong>— Avnita Suri, Lifestyle Prescriptions Health Coach</strong></blockquote>
       </div>
-
       <div class="flagship-card">
         <p class="flagship-card-label">Complete Mind-Body Healing Program</p>
         <h3>Enrol in The Suri Program</h3>
-        <div class="flagship-price">
-          <span class="amount">&pound;499</span>
-          <span class="period"> / one-time</span>
-        </div>
-
+        <div class="flagship-price"><span class="amount">&pound;899</span><span class="period"> / one-time</span></div>
         <ul class="flagship-includes">
           <li>4 weeks of structured, guided healing</li>
           <li>Live sessions with Avnita</li>
@@ -1570,7 +1029,6 @@
           <li>Journalling prompts &amp; belief rewiring</li>
           <li>Movement confidence rebuilding</li>
         </ul>
-
         <span class="btn-flagship" style="cursor:pointer">Get in Touch</span>
         <p class="flagship-card-note">Limited spots available</p>
       </div>
@@ -1578,7 +1036,7 @@
   </section>
 
   <!-- WHAT YOU GET -->
-  <section class="section section-alt reveal" id="workshop">
+  <section class="section section-alt" id="workshop">
     <div class="container">
       <h2 class="section-heading">What You <span>Get</span> When You Join</h2>
       <p class="section-sub">Everything you need to start your healing journey, in one powerful workshop.</p>
@@ -1608,10 +1066,10 @@
   </section>
 
   <!-- FINAL CTA — teal gradient, no fake timer -->
-  <section class="cta-section reveal">
+  <section class="cta-section">
     <div class="container">
       <h2>Ready to Start Your Healing Journey?</h2>
-      <p>Join the Freedom from Chronic Pain and learn the same mind-body framework that has helped over 100 people
+      <p>Join the Chronic Pain Freedom Workshop and learn the same mind-body framework that has helped over 100 people
         break free from chronic pain.</p>
       <a href="https://www.freedomfromchronicpain.co.uk/" class="btn-white">Reserve Your Spot Now</a>
     </div>
@@ -1624,7 +1082,7 @@
 
   <!-- STICKY CTA — clean, no fake countdown timer -->
   <div class="sticky-cta">
-    <p>Join the Freedom from Chronic Pain</p>
+    <p>Join the Chronic Pain Freedom Workshop</p>
     <a href="https://www.freedomfromchronicpain.co.uk/">Reserve Your Spot</a>
   </div>
 
@@ -1633,50 +1091,16 @@
   <script type="text/javascript" src="js/jquery.js"></script>
   <script src="js/slick.js"></script>
   <script>
-    // Video modal
-    (function() {
-      var modal = document.getElementById('videoModal');
-      var frame = document.getElementById('videoModalFrame');
-      var closeBtn = document.getElementById('videoModalClose');
-
-      document.querySelectorAll('.video-card[data-video]').forEach(function(card) {
-        card.addEventListener('click', function() {
-          var vid = this.getAttribute('data-video');
-          frame.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0';
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        });
-      });
-
-      function closeModal() {
-        modal.classList.remove('active');
-        frame.src = '';
-        document.body.style.overflow = '';
-      }
-
-      closeBtn.addEventListener('click', closeModal);
-      modal.addEventListener('click', function(e) {
-        if (e.target === modal) closeModal();
-      });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-      });
-    })();
-
     $(document).ready(function () {
       var container = document.querySelector(".v2-testimonial-slider");
       if (container && typeof testimonials !== "undefined") {
         container.innerHTML = testimonials.map(function (item) {
-          var videoBtn = item.video
-            ? '<a href="' + item.video + '" target="_blank" class="v2-tcard-video"><svg viewBox="0 0 16 16"><path d="M6.5 4.5v7l5.5-3.5z"/></svg>Watch Video</a>'
-            : '';
           return '<div class="v2-tcard"><div class="v2-tcard-inner">' +
             (item.image ? '<img src="' + item.image + '" class="v2-tcard-photo" onerror="this.style.display=\'none\'" />' : '') +
             '<div><div class="v2-tcard-quote">&ldquo;</div>' +
             '<p class="v2-tcard-text">' + item.text + '</p></div>' +
-            '<div class="v2-tcard-footer">' + videoBtn +
-            '<p class="v2-tcard-name" style="margin-top:0">&mdash; ' + item.name + '</p>' +
-            '</div></div></div>';
+            '<p class="v2-tcard-name">&mdash; ' + item.name + '</p>' +
+            '</div></div>';
         }).join("");
 
         $(".v2-testimonial-slider").slick({
@@ -1685,8 +1109,6 @@
           infinite: true,
           autoplay: true,
           autoplaySpeed: 5000,
-          speed: 600,
-          cssEase: 'cubic-bezier(0.16, 1, 0.3, 1)',
           slidesToShow: 3,
           responsive: [
             { breakpoint: 1024, settings: { slidesToShow: 2 } },
@@ -1695,25 +1117,6 @@
         });
       }
     });
-  </script>
-
-  <script>
-    (function() {
-      var els = document.querySelectorAll('.reveal');
-      if (!('IntersectionObserver' in window)) {
-        els.forEach(function(el) { el.classList.add('visible'); });
-        return;
-      }
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      els.forEach(function(el) { observer.observe(el); });
-    })();
   </script>
 
 </body>
