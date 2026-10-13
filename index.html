@@ -556,6 +556,55 @@
       fill: currentColor;
     }
 
+    .video-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .video-overlay.active {
+      display: flex;
+    }
+
+    .video-overlay-inner {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16 / 9;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-overlay-inner.shorts {
+      max-width: 400px;
+      aspect-ratio: 9 / 16;
+    }
+
+    .video-overlay-inner iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-overlay-close {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      line-height: 1;
+    }
+
     .v2-tcard-photo {
       width: 48px;
       height: 48px;
@@ -1098,6 +1147,14 @@
     <a href="https://www.freedomfromchronicpain.co.uk/">Reserve Your Spot</a>
   </div>
 
+  <!-- VIDEO LIGHTBOX -->
+  <div class="video-overlay" id="videoOverlay">
+    <div class="video-overlay-inner" id="videoBox">
+      <button class="video-overlay-close" id="videoClose">&times;</button>
+      <iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
   <!-- SCRIPTS -->
   <script src="js/testimonials.js"></script>
   <script type="text/javascript" src="js/jquery.js"></script>
@@ -1107,7 +1164,7 @@
       var container = document.querySelector(".v2-testimonial-slider");
       if (container && typeof testimonials !== "undefined") {
         container.innerHTML = testimonials.map(function (item) {
-          var videoBtn = item.video ? '<a href="' + item.video + '" target="_blank" rel="noopener" class="v2-tcard-video"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg> Watch Video</a>' : '';
+          var videoBtn = item.video ? '<a href="#" data-video="' + item.video + '" class="v2-tcard-video"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg> Watch Video</a>' : '';
           return '<div class="v2-tcard"><div class="v2-tcard-inner">' +
             (item.image ? '<img src="' + item.image + '" class="v2-tcard-photo" onerror="this.style.display=\'none\'" />' : '') +
             '<div><div class="v2-tcard-quote">&ldquo;</div>' +
@@ -1129,6 +1186,49 @@
           ]
         });
       }
+
+      // Video lightbox
+      var overlay = document.getElementById('videoOverlay');
+      var frame = document.getElementById('videoFrame');
+      var box = document.getElementById('videoBox');
+
+      function getEmbedUrl(url) {
+        var id;
+        if (url.indexOf('shorts/') !== -1) {
+          id = url.split('shorts/')[1].split('?')[0];
+          return { src: 'https://www.youtube.com/embed/' + id + '?autoplay=1', shorts: true };
+        }
+        if (url.indexOf('youtu.be/') !== -1) {
+          id = url.split('youtu.be/')[1].split('?')[0];
+          return { src: 'https://www.youtube.com/embed/' + id + '?autoplay=1', shorts: false };
+        }
+        if (url.indexOf('watch?v=') !== -1) {
+          id = url.split('v=')[1].split('&')[0];
+          return { src: 'https://www.youtube.com/embed/' + id + '?autoplay=1', shorts: false };
+        }
+        return { src: url, shorts: false };
+      }
+
+      $(document).on('click', '.v2-tcard-video', function (e) {
+        e.preventDefault();
+        var info = getEmbedUrl($(this).data('video'));
+        frame.src = info.src;
+        box.className = 'video-overlay-inner' + (info.shorts ? ' shorts' : '');
+        overlay.classList.add('active');
+      });
+
+      function closeVideo() {
+        overlay.classList.remove('active');
+        frame.src = '';
+      }
+
+      document.getElementById('videoClose').addEventListener('click', closeVideo);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeVideo();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeVideo();
+      });
     });
   </script>
 
