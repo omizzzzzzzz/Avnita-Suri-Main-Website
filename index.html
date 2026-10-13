@@ -530,6 +530,32 @@
       border-color: var(--accent);
     }
 
+    .v2-tcard-video {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+      padding: 0.4rem 0.9rem;
+      background: var(--accent-glow);
+      color: var(--accent-deep);
+      border-radius: 2rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .v2-tcard-video:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .v2-tcard-video svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
     .v2-tcard-photo {
       width: 48px;
       height: 48px;
@@ -1081,10 +1107,11 @@
       var container = document.querySelector(".v2-testimonial-slider");
       if (container && typeof testimonials !== "undefined") {
         container.innerHTML = testimonials.map(function (item) {
+          var videoBtn = item.video ? '<a href="' + item.video + '" target="_blank" rel="noopener" class="v2-tcard-video"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg> Watch Video</a>' : '';
           return '<div class="v2-tcard"><div class="v2-tcard-inner">' +
             (item.image ? '<img src="' + item.image + '" class="v2-tcard-photo" onerror="this.style.display=\'none\'" />' : '') +
             '<div><div class="v2-tcard-quote">&ldquo;</div>' +
-            '<p class="v2-tcard-text">' + item.text + '</p></div>' +
+            '<p class="v2-tcard-text">' + item.text + '</p>' + videoBtn + '</div>' +
             '<p class="v2-tcard-name">&mdash; ' + item.name + '</p>' +
             '</div></div>';
         }).join("");
