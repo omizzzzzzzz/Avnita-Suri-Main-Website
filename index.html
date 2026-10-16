@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v2.5 -->
+<!-- v2.6 -->
 <html lang="en">
 
 <head>
@@ -464,6 +464,42 @@
       color: var(--text-soft);
       font-size: 0.9rem;
       line-height: 1.5;
+    }
+
+    /* ─── VIDEO TESTIMONIALS ─── */
+    .video-testimonials { padding: 4rem 1.5rem; background: var(--white); }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .video-card {
+      border-radius: 1rem;
+      overflow: hidden;
+      background: var(--cream);
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: box-shadow 0.3s;
+    }
+    .video-card:hover { box-shadow: 0 4px 20px rgba(229,83,129,0.12); }
+    .video-card .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+    }
+    .video-card .video-wrap.shorts { padding-bottom: 177.78%; }
+    .video-card .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .video-card-name {
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
     }
 
     /* ─── TESTIMONIALS ─── */
@@ -1062,6 +1098,48 @@
       <div class="v2-testimonial-slider"></div>
       <p style="text-align: center; color: var(--text-soft); margin-top: 1.5rem; font-style: italic;">and many
         more&hellip;</p>
+    </div>
+  </section>
+
+  <!-- VIDEO TESTIMONIALS -->
+  <section class="video-testimonials" id="video-stories">
+    <div class="container">
+      <h2 class="section-heading">Watch Their <span>Stories</span></h2>
+      <p class="section-sub">Real people sharing their healing journeys in their own words.</p>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/V9EogKAP16w" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <p class="video-card-name">Emily Isaac Johnson</p>
+        </div>
+        <div class="video-card">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/0G5TgZvoFFw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <p class="video-card-name">Sean Bastock</p>
+        </div>
+        <div class="video-card">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/g9mucA-opv0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <p class="video-card-name">Karla Boncompagni</p>
+        </div>
+        <div class="video-card">
+          <div class="video-wrap shorts"><iframe src="https://www.youtube.com/embed/DB8G1z6WnUE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <p class="video-card-name">Shemza</p>
+        </div>
+        <div class="video-card">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/pN7LJjqVV-w" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <p class="video-card-name">Emma Foulkes</p>
+        </div>
+        <div class="video-card">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/EQpBrAuMKjg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <p class="video-card-name">Peggy Stewart</p>
+        </div>
+        <div class="video-card">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/_dH64cirExk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <p class="video-card-name">Sereatha Parrish Griffith</p>
+        </div>
+        <div class="video-card">
+          <div class="video-wrap"><iframe src="https://www.youtube.com/embed/OvivKt-N6nY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <p class="video-card-name">Robyn Mumford</p>
+        </div>
+      </div>
     </div>
   </section>
 
