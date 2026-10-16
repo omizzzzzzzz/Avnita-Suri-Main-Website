@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v2.4 -->
+<!-- v2.5 -->
 <html lang="en">
 
 <head>
@@ -532,28 +532,31 @@
     }
 
     .v2-tcard-video {
-      display: inline-flex;
+      display: inline-flex !important;
       align-items: center;
-      gap: 0.4rem;
-      margin-top: 0.75rem;
-      padding: 0.4rem 0.9rem;
-      background: var(--accent-glow);
-      color: var(--accent-deep);
+      gap: 0.45rem;
+      margin-top: 1rem;
+      padding: 0.5rem 1.1rem;
+      background: var(--accent);
+      color: #fff;
       border-radius: 2rem;
-      font-size: 0.78rem;
-      font-weight: 600;
+      font-size: 0.82rem;
+      font-weight: 700;
       text-decoration: none;
-      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 2px 8px rgba(229, 83, 129, 0.25);
     }
 
     .v2-tcard-video:hover {
-      background: var(--accent);
-      color: var(--white);
+      background: var(--accent-deep);
+      color: #fff;
+      transform: translateY(-1px);
     }
 
     .v2-tcard-video svg {
-      width: 14px;
-      height: 14px;
+      width: 15px;
+      height: 15px;
       fill: currentColor;
     }
 
@@ -701,9 +704,7 @@
     .flagship-card { background: var(--white); border-radius: 1.5rem; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08); padding: 2.5rem 2rem; text-align: center; }
     .flagship-card-label { font-size: 0.85rem; font-weight: 600; color: #BFA4A4; margin-bottom: 0.5rem; }
     .flagship-card h3 { font-family: var(--serif); font-size: 1.6rem; font-weight: 500; color: var(--text); margin-bottom: 1.25rem; }
-    .flagship-price { margin-bottom: 0.5rem; }
-    .flagship-price .amount { font-size: 3rem; font-weight: 800; color: #74161c; }
-    .flagship-price .period { font-size: 1rem; color: var(--text-soft); font-weight: 500; }
+    .flagship-touch { margin-bottom: 0.5rem; font-size: 1rem; color: var(--text-soft); font-weight: 500; font-style: italic; }
     .flagship-includes { list-style: none; text-align: left; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
     .flagship-includes li { font-size: 0.88rem; color: var(--text-soft); display: flex; align-items: flex-start; gap: 0.5rem; }
     .flagship-includes li::before { content: "\2713"; color: #74161c; font-weight: 700; flex-shrink: 0; }
@@ -1082,7 +1083,7 @@
       <div class="flagship-card">
         <p class="flagship-card-label">Complete Mind-Body Healing Program</p>
         <h3>Enrol in The Suri Program</h3>
-        <div class="flagship-price"><span class="amount">&pound;899</span><span class="period"> / one-time</span></div>
+        <p class="flagship-touch">Pricing available on request</p>
         <ul class="flagship-includes">
           <li>4 weeks of structured, guided healing</li>
           <li>Live sessions with Avnita</li>
