@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Suri Program | Enrol</title>
+  <link href="../src/output.css" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -140,19 +141,110 @@
       text-align: center;
       color: #888;
       font-size: 0.85rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
-    .card .price {
+
+    /* ── TIER TABS ── */
+    .tier-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .tier-tab {
+      flex: 1;
+      padding: 0.7rem 0.5rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.6rem;
+      background: #fff;
       text-align: center;
-      font-size: 2.75rem;
-      font-weight: 800;
-      color: #1071b8;
-      margin-bottom: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .card .price small {
-      font-size: 1rem;
+    .tier-tab:hover { border-color: #93c5fd; }
+    .tier-tab.active {
+      border-color: #1071b8;
+      background: #f0f7ff;
+    }
+    .tier-tab .tier-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 0.15rem;
+    }
+    .tier-tab .tier-desc {
+      font-size: 0.7rem;
+      color: #888;
+      line-height: 1.3;
+    }
+    .tier-tab.active .tier-name { color: #1071b8; }
+
+    /* ── PAYMENT OPTIONS ── */
+    .plan-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .plan-option {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.7rem 0.85rem;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .plan-option:hover { border-color: #93c5fd; background: #fafcff; }
+    .plan-option.selected {
+      border-color: #1071b8;
+      background: #f0f7ff;
+    }
+    .plan-option input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #1071b8;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .plan-option .plan-info { flex: 1; }
+    .plan-option .plan-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #111;
+    }
+    .plan-option .plan-detail {
+      font-size: 0.75rem;
+      color: #888;
+      margin-top: 0.1rem;
+    }
+    .plan-option .plan-price {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1071b8;
+      white-space: nowrap;
+    }
+    .plan-option .plan-price small {
+      font-size: 0.72rem;
       font-weight: 500;
       color: #999;
+    }
+    .plan-option.best-value {
+      position: relative;
+    }
+    .plan-option.best-value::after {
+      content: 'Best value';
+      position: absolute;
+      top: -8px;
+      right: 10px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: #1071b8;
+      padding: 0.15rem 0.5rem;
+      border-radius: 2rem;
     }
     label.field-label {
       display: block;
@@ -390,7 +482,71 @@
     <div class="card">
       <h2>Enrol Now</h2>
       <p class="card-sub">Secure your place on the program</p>
-      <div class="price">&pound;199 <small>/ one-time</small></div>
+
+      <!-- TIER TABS -->
+      <div class="tier-tabs">
+        <div class="tier-tab active" data-tier="gold" onclick="selectTier('gold')">
+          <div class="tier-name">Gold Program</div>
+          <div class="tier-desc">Full program + private sessions</div>
+        </div>
+        <div class="tier-tab" data-tier="silver" onclick="selectTier('silver')">
+          <div class="tier-name">Silver Program</div>
+          <div class="tier-desc">6 months &middot; no private sessions</div>
+        </div>
+      </div>
+
+      <!-- GOLD PAYMENT OPTIONS -->
+      <div id="goldPlans" class="plan-options">
+        <label class="plan-option best-value selected" onclick="selectPlan(this, 'gold_full')">
+          <input type="radio" name="plan" value="gold_full" checked />
+          <div class="plan-info">
+            <div class="plan-label">Pay in full</div>
+            <div class="plan-detail">One-time payment &mdash; save the most</div>
+          </div>
+          <div class="plan-price">&pound;1,197</div>
+        </label>
+        <label class="plan-option" onclick="selectPlan(this, 'gold_2')">
+          <input type="radio" name="plan" value="gold_2" />
+          <div class="plan-info">
+            <div class="plan-label">2 monthly payments</div>
+          </div>
+          <div class="plan-price">&pound;599 <small>/mo</small></div>
+        </label>
+        <label class="plan-option" onclick="selectPlan(this, 'gold_3')">
+          <input type="radio" name="plan" value="gold_3" />
+          <div class="plan-info">
+            <div class="plan-label">3 monthly payments</div>
+          </div>
+          <div class="plan-price">&pound;399 <small>/mo</small></div>
+        </label>
+        <label class="plan-option" onclick="selectPlan(this, 'gold_4')">
+          <input type="radio" name="plan" value="gold_4" />
+          <div class="plan-info">
+            <div class="plan-label">4 monthly payments</div>
+          </div>
+          <div class="plan-price">&pound;299 <small>/mo</small></div>
+        </label>
+        <label class="plan-option" onclick="selectPlan(this, 'gold_6')">
+          <input type="radio" name="plan" value="gold_6" />
+          <div class="plan-info">
+            <div class="plan-label">6 monthly payments</div>
+            <div class="plan-detail">Most flexible</div>
+          </div>
+          <div class="plan-price">&pound;200 <small>/mo</small></div>
+        </label>
+      </div>
+
+      <!-- SILVER PLAN (hidden by default) -->
+      <div id="silverPlans" class="plan-options" style="display:none;">
+        <label class="plan-option selected" onclick="selectPlan(this, 'silver')">
+          <input type="radio" name="plan" value="silver" checked />
+          <div class="plan-info">
+            <div class="plan-label">Silver Program</div>
+            <div class="plan-detail">6 months &middot; group sessions only, no private 1-to-1</div>
+          </div>
+          <div class="plan-price">&pound;597</div>
+        </label>
+      </div>
 
       <label class="field-label" for="fullName">Full Name</label>
       <input type="text" id="fullName" placeholder="Enter your full name" autocomplete="name" />
@@ -406,7 +562,7 @@
         </label>
       </div>
 
-      <a id="enrolBtn" class="btn disabled" href="https://buy.stripe.com/5kQbJ2876duC5Zs1HL33W00" target="_blank">
+      <a id="enrolBtn" class="btn disabled" href="https://buy.stripe.com/5kQ9AU9bagGO5Zs1HL33W0c" target="_blank">
         Proceed to Payment
       </a>
       <p class="error-msg" id="errorMsg"></p>
@@ -564,6 +720,17 @@
     // ── CONFIG ──
     var CONSENT_LOG_URL = 'https://script.google.com/macros/s/AKfycbzD9m6I0Z5BOwRu5SBruD20mBAVBn0zfSPd4xG4Hf0MjlEzedOuSbTJ0QfifautvHQtMw/exec';
 
+    var STRIPE_URLS = {
+      gold_full: 'https://buy.stripe.com/5kQ9AU9bagGO5Zs1HL33W0c',
+      gold_2:    'https://buy.stripe.com/00w14ocnm62a2Ng1HL33W0b',
+      gold_3:    'https://buy.stripe.com/6oU8wQ0EE76e87A72533W0d',
+      gold_4:    'https://buy.stripe.com/9B6eVefzy8ai1Jc0DH33W0e',
+      gold_6:    'https://buy.stripe.com/eVq28s732cqyfA22LP33W0f',
+      silver:    'https://buy.stripe.com/cNifZi5YY2PYevYaeh33W0g'
+    };
+
+    var selectedPlan = 'gold_full';
+
     // ── ELEMENTS ──
     var nameInput = document.getElementById('fullName');
     var ageCheck = document.getElementById('ageCheck');
@@ -574,6 +741,37 @@
     var tcModalInner = document.getElementById('tcModalInner');
     var openTerms = document.getElementById('openTerms');
     var closeModal = document.getElementById('closeModal');
+    var goldPlans = document.getElementById('goldPlans');
+    var silverPlans = document.getElementById('silverPlans');
+
+    // ── TIER SELECTION ──
+    function selectTier(tier) {
+      document.querySelectorAll('.tier-tab').forEach(function (tab) {
+        tab.classList.toggle('active', tab.dataset.tier === tier);
+      });
+      if (tier === 'gold') {
+        goldPlans.style.display = '';
+        silverPlans.style.display = 'none';
+        selectPlan(goldPlans.querySelector('.plan-option.selected') || goldPlans.querySelector('.plan-option'), 'gold_full');
+        goldPlans.querySelector('input[value="gold_full"]').checked = true;
+      } else {
+        goldPlans.style.display = 'none';
+        silverPlans.style.display = '';
+        selectPlan(silverPlans.querySelector('.plan-option'), 'silver');
+        silverPlans.querySelector('input[value="silver"]').checked = true;
+      }
+    }
+
+    // ── PLAN SELECTION ──
+    function selectPlan(el, plan) {
+      var container = el.closest('.plan-options');
+      container.querySelectorAll('.plan-option').forEach(function (opt) {
+        opt.classList.remove('selected');
+      });
+      el.classList.add('selected');
+      selectedPlan = plan;
+      enrolBtn.href = STRIPE_URLS[plan];
+    }
 
     // ── VALIDATION ──
     function validate() {
@@ -600,6 +798,7 @@
         name: nameInput.value.trim(),
         age_confirmed: ageCheck.checked,
         terms_accepted: termsCheck.checked,
+        plan: selectedPlan,
         timestamp: new Date().toISOString(),
         page: window.location.href
       };
