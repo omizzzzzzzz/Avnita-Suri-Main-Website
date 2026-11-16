@@ -5,475 +5,467 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Suri Program | Enrol</title>
-  <link href="../src/output.css" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      min-height: 100dvh;
-      background: linear-gradient(135deg, #1d4179 0%, #041239 42%, #000 50%, #4e1151 100%);
+      background: #060d1f;
       font-family: system-ui, -apple-system, sans-serif;
       color: #fff;
+      overflow-x: hidden;
     }
-
-    /* ── LAYOUT ── */
-    .page {
-      max-width: 1100px;
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #1d4179 0%, #041239 42%, #000 50%, #4e1151 100%);
+      z-index: -1;
+    }
+    .container {
+      max-width: 960px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      align-items: start;
-      padding: 2.5rem 1.25rem;
-      gap: 2rem;
+      padding: 0 1.25rem;
+    }
+    @media (min-width: 768px) { .container { padding: 0 2rem; } }
+    section { padding: 4rem 0; }
+    @media (min-width: 768px) { section { padding: 5rem 0; } }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 0;
+    }
+    .hero-inner { max-width: 680px; }
+    .hero .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #2ca0da;
+      background: rgba(44,160,218,0.1);
+      border: 1px solid rgba(44,160,218,0.25);
+      border-radius: 2rem;
+      padding: 0.5rem 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.12;
+      margin-bottom: 1.25rem;
+    }
+    @media (min-width: 768px) { .hero h1 { font-size: 3.25rem; } }
+    .hero h1 span { color: #2ca0da; }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 2.5rem;
+    }
+    @media (min-width: 768px) { .hero .subtitle { font-size: 1.2rem; } }
+    .cta-primary {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: #1071b8;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 0.6rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .cta-primary:hover { background: #0d5a94; transform: translateY(-2px); }
+    .scroll-hint {
+      display: block;
+      margin-top: 3rem;
+      color: rgba(255,255,255,0.3);
+      font-size: 1.5rem;
+      animation: bob 2s ease infinite;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+    /* ═══ MODULES ═══ */
+    .modules h2, .pricing h2, .comparison h2 {
+      text-align: center;
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
     }
     @media (min-width: 768px) {
-      .page {
-        grid-template-columns: 1fr 400px;
-        padding: 3rem 2rem;
-        gap: 2.5rem;
-        align-items: start;
-        min-height: 100dvh;
-        align-content: center;
-      }
+      .modules h2, .pricing h2, .comparison h2 { font-size: 2rem; }
     }
-    @media (min-width: 1024px) {
-      .page { padding: 3rem 2.5rem; gap: 3rem; }
+    .section-sub {
+      text-align: center;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+    .module-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 600px) { .module-grid { grid-template-columns: 1fr 1fr; } }
+    .module-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1rem;
+      padding: 1.75rem 1.5rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .module-card:hover { border-color: rgba(44,160,218,0.3); background: rgba(255,255,255,0.08); }
+    .module-card .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      background: #1071b8;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+    }
+    .module-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .module-card p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+    /* ═══ TESTIMONIAL ═══ */
+    .testimonial {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .testimonial .quote-mark {
+      font-size: 3rem;
+      color: rgba(44,160,218,0.3);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .testimonial blockquote {
+      font-size: 1.1rem;
+      font-style: italic;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.8);
+      max-width: 580px;
+      margin: 0 auto 1.25rem;
+    }
+    @media (min-width: 768px) { .testimonial blockquote { font-size: 1.25rem; } }
+    .testimonial .attribution { font-size: 0.9rem; font-weight: 600; color: #2ca0da; }
+    .testimonial .attribution span {
+      display: block;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
     }
 
-    /* ── TRUST BAR ── */
-    .trust-bar {
-      grid-column: 1 / -1;
+    /* ═══ TRUST BAR ═══ */
+    .trust-strip {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.5rem 2.5rem;
-      padding: 1.5rem 0 0.5rem;
+      gap: 1.25rem 2.5rem;
+      padding: 2rem 0;
     }
     .trust-item {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.7);
-    }
-    .trust-item .trust-icon {
-      width: 28px;
-      height: 28px;
-      background: rgba(44,160,218,0.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      gap: 0.55rem;
       font-size: 0.85rem;
-      flex-shrink: 0;
-    }
-
-    /* ── COMPARISON TABLE ── */
-    .comparison {
-      grid-column: 1 / -1;
-      max-width: 700px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .comparison h3 {
-      text-align: center;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 1.25rem;
-    }
-    .comparison table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-    .comparison th {
-      padding: 0.65rem 0.75rem;
-      text-align: left;
-      color: #2ca0da;
-      font-weight: 700;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-      font-size: 0.9rem;
-    }
-    .comparison th:not(:first-child) {
-      text-align: center;
-      width: 90px;
-    }
-    .comparison td {
-      padding: 0.55rem 0.75rem;
-      color: rgba(255,255,255,0.85);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .comparison td:not(:first-child) {
-      text-align: center;
-      font-size: 0.95rem;
-    }
-    .comparison .check { color: #34d399; }
-    .comparison .cross { color: rgba(255,255,255,0.25); }
-
-    /* ── GUARANTEE ── */
-    .guarantee {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 1.5rem 1rem 2.5rem;
-    }
-    .guarantee p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.55);
-      max-width: 500px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-    .guarantee p strong {
-      color: rgba(255,255,255,0.8);
-    }
-
-    /* ── LEFT: INFO PANEL ── */
-    .info {
-      width: 100%;
-      background: rgba(255,255,255,0.07);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 1.5rem;
-      padding: 2.25rem 2rem;
-    }
-    .info .badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #2ca0da;
-      background: rgba(44,160,218,0.12);
-      border-radius: 2rem;
-      padding: 0.4rem 1rem;
-      margin-bottom: 1.25rem;
-    }
-    .info h1 {
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 0.75rem;
-      color: #fff;
-    }
-    @media (min-width: 768px) {
-      .info h1 { font-size: 2.5rem; }
-    }
-    .info h1 span { color: #2ca0da; }
-    .info .lead {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 1.75rem;
-    }
-    .info .features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-    .info .features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 0.92rem;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.9);
-    }
-    .info .features li .num {
-      flex-shrink: 0;
-      width: 30px;
-      height: 30px;
-      background: #1071b8;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #fff;
-      margin-top: 0.1rem;
-    }
-    .info .features li strong { color: #fff; }
-    .info .divider {
-      border: none;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      margin: 1.5rem 0;
-    }
-    .info .quote {
-      font-style: italic;
-      font-size: 0.9rem;
-      line-height: 1.65;
       color: rgba(255,255,255,0.65);
     }
-    .info .quote strong {
-      display: block;
-      font-style: normal;
-      color: rgba(255,255,255,0.85);
-      margin-top: 0.4rem;
-      font-size: 0.85rem;
-    }
-
-    /* ── RIGHT: CHECKOUT CARD ── */
-    .card {
-      background: #fff;
-      border-radius: 1.5rem;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
-      width: 100%;
-      padding: 2.25rem 1.75rem;
-    }
-    .card h2 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #111;
-      text-align: center;
-      margin-bottom: 0.2rem;
-    }
-    .card .card-sub {
-      text-align: center;
-      color: #888;
-      font-size: 0.85rem;
-      margin-bottom: 1.25rem;
-    }
-
-    /* ── TIER TABS ── */
-    .tier-tabs {
+    .trust-icon {
+      width: 34px; height: 34px;
+      background: rgba(44,160,218,0.1);
+      border-radius: 50%;
       display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
     }
-    .tier-tab {
-      flex: 1;
-      padding: 0.7rem 0.5rem;
-      border: 2px solid #e5e7eb;
-      border-radius: 0.6rem;
-      background: #fff;
-      text-align: center;
+
+    /* ═══ PRICING CARDS ═══ */
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (min-width: 650px) { .pricing-cards { grid-template-columns: 1fr 1fr; } }
+    .price-card {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 1.25rem;
+      padding: 2rem 1.75rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+    }
+    .price-card:hover { border-color: rgba(44,160,218,0.35); }
+    .price-card.active { border-color: #2ca0da; background: rgba(44,160,218,0.07); }
+    .popular-tag {
+      position: absolute;
+      top: -11px; left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #1071b8, #2ca0da);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 1rem;
+      border-radius: 2rem;
+      white-space: nowrap;
+    }
+    .price-card .tier-name { font-size: 1.3rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; }
+    .price-card .price-block { text-align: center; margin-bottom: 1.5rem; }
+    .price-block .from { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+    .price-block .amount { font-size: 2.5rem; font-weight: 800; color: #2ca0da; }
+    .price-block .period { font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+    .price-block .note { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+    .price-card .feat-list { list-style: none; margin-bottom: 1.5rem; }
+    .feat-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+      padding: 0.35rem 0;
+    }
+    .feat-list .ic { flex-shrink: 0; margin-top: 0.15rem; font-weight: 700; }
+    .feat-list .ic.yes { color: #34d399; }
+    .feat-list .ic.no { color: rgba(255,255,255,0.2); }
+    .select-tier-btn {
+      display: block;
+      width: 100%;
+      padding: 0.85rem;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 0.55rem;
+      background: transparent;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
     }
-    .tier-tab:hover { border-color: #93c5fd; }
-    .tier-tab.active {
-      border-color: #1071b8;
-      background: #f0f7ff;
-    }
-    .tier-tab .tier-name {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #111;
-      margin-bottom: 0.15rem;
-    }
-    .tier-tab .tier-desc {
-      font-size: 0.7rem;
-      color: #888;
-      line-height: 1.3;
-    }
-    .tier-tab.active .tier-name { color: #1071b8; }
+    .select-tier-btn:hover { border-color: #2ca0da; background: rgba(44,160,218,0.08); }
+    .price-card.active .select-tier-btn { background: #1071b8; border-color: #1071b8; }
 
-    /* ── PAYMENT OPTIONS ── */
+    /* ═══ CHECKOUT CARD ═══ */
+    .checkout-card {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 2.25rem 1.75rem;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+    }
+    @media (min-width: 768px) { .checkout-card { padding: 2.5rem 2rem; } }
+    .checkout-card h3 {
+      font-size: 1.25rem; font-weight: 700; color: #111;
+      text-align: center; margin-bottom: 0.2rem;
+    }
+    .checkout-sub {
+      text-align: center;
+      color: #777;
+      font-size: 0.88rem;
+      margin-bottom: 1.5rem;
+    }
     .plan-options {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
+      gap: 0.55rem;
+      margin-bottom: 1.5rem;
     }
     .plan-option {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
-      padding: 0.7rem 0.85rem;
-      border: 1.5px solid #e5e7eb;
-      border-radius: 0.5rem;
+      gap: 0.7rem;
+      padding: 0.8rem 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.6rem;
       cursor: pointer;
       transition: all 0.15s;
     }
     .plan-option:hover { border-color: #93c5fd; background: #fafcff; }
-    .plan-option.selected {
-      border-color: #1071b8;
-      background: #f0f7ff;
-    }
+    .plan-option.selected { border-color: #1071b8; background: #f0f7ff; }
     .plan-option input[type="radio"] {
-      width: 18px;
-      height: 18px;
+      width: 20px; height: 20px;
       accent-color: #1071b8;
       flex-shrink: 0;
       cursor: pointer;
     }
     .plan-option .plan-info { flex: 1; }
-    .plan-option .plan-label {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: #111;
-    }
-    .plan-option .plan-detail {
-      font-size: 0.75rem;
-      color: #888;
-      margin-top: 0.1rem;
-    }
-    .plan-option .plan-price {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #1071b8;
-      white-space: nowrap;
-    }
-    .plan-option .plan-price small {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: #999;
-    }
-    .plan-option.best-value {
-      position: relative;
-    }
+    .plan-option .plan-label { font-size: 0.95rem; font-weight: 600; color: #111; }
+    .plan-option .plan-detail { font-size: 0.76rem; color: #888; margin-top: 0.1rem; }
+    .plan-option .plan-price { font-size: 1.05rem; font-weight: 700; color: #1071b8; white-space: nowrap; }
+    .plan-option .plan-price small { font-size: 0.72rem; font-weight: 500; color: #999; }
+    .plan-option.best-value { position: relative; }
     .plan-option.best-value::after {
       content: 'Best value';
       position: absolute;
-      top: -8px;
-      right: 10px;
-      font-size: 0.62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #fff;
-      background: #1071b8;
-      padding: 0.15rem 0.5rem;
-      border-radius: 2rem;
+      top: -9px; right: 12px;
+      font-size: 0.62rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: #fff; background: #1071b8;
+      padding: 0.18rem 0.55rem; border-radius: 2rem;
     }
-    label.field-label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 0.35rem;
+    .checkout-card label.field-label {
+      display: block; font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 0.4rem;
     }
-    input[type="text"] {
+    .checkout-card input[type="text"] {
       width: 100%;
-      padding: 0.7rem 0.9rem;
-      border: 1.5px solid #ddd;
+      padding: 0.8rem 1rem;
+      border: 2px solid #e5e7eb;
       border-radius: 0.5rem;
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: #111;
       outline: none;
       transition: border-color 0.2s;
     }
-    input[type="text"]:focus { border-color: #1071b8; }
+    .checkout-card input[type="text"]:focus { border-color: #1071b8; }
     .checkbox-group {
       margin-top: 1.25rem;
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.7rem;
     }
     .checkbox-group label {
       display: flex;
       align-items: flex-start;
-      gap: 0.55rem;
-      font-size: 0.82rem;
+      gap: 0.6rem;
+      font-size: 0.88rem;
       color: #555;
       cursor: pointer;
-      line-height: 1.4;
+      line-height: 1.45;
     }
     .checkbox-group input[type="checkbox"] {
       margin-top: 0.15rem;
-      width: 17px;
-      height: 17px;
+      width: 18px; height: 18px;
       flex-shrink: 0;
       accent-color: #1071b8;
       cursor: pointer;
     }
     .tc-link {
-      color: #1071b8;
-      text-decoration: underline;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font: inherit;
-      padding: 0;
+      color: #1071b8; text-decoration: underline; cursor: pointer;
+      background: none; border: none; font: inherit; padding: 0;
     }
     .tc-link:hover { color: #0d5a94; }
     .btn {
       display: block;
       width: 100%;
       margin-top: 1.5rem;
-      padding: 0.9rem;
+      padding: 1rem;
       border: none;
-      border-radius: 0.5rem;
+      border-radius: 0.6rem;
       background: #1071b8;
       color: #fff;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s, opacity 0.2s;
+      transition: background 0.2s, opacity 0.2s, transform 0.15s;
       text-align: center;
       text-decoration: none;
     }
-    .btn:hover { background: #0d5a94; }
-    .btn.disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
-      pointer-events: none;
+    .btn:hover { background: #0d5a94; transform: translateY(-1px); }
+    .btn.disabled { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
+    .checkout-card .secure {
+      text-align: center; color: #aaa; font-size: 0.78rem; margin-top: 0.65rem;
     }
-    .card .secure {
-      text-align: center;
-      color: #aaa;
-      font-size: 0.75rem;
-      margin-top: 0.6rem;
-    }
-    .card .error-msg {
-      color: #e53e3e;
-      font-size: 0.8rem;
-      text-align: center;
-      margin-top: 0.5rem;
-      min-height: 1.2em;
+    .checkout-card .error-msg {
+      color: #e53e3e; font-size: 0.82rem; text-align: center; margin-top: 0.5rem; min-height: 1.2em;
     }
 
-    /* ── T&C MODAL ── */
+    /* ═══ COMPARISON ═══ */
+    .comp-table {
+      max-width: 700px;
+      margin: 0 auto;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .comp-table th {
+      padding: 0.8rem 1rem;
+      text-align: left;
+      color: #2ca0da;
+      font-weight: 700;
+      border-bottom: 2px solid rgba(255,255,255,0.12);
+      font-size: 0.95rem;
+    }
+    .comp-table th:not(:first-child) { text-align: center; width: 100px; }
+    .comp-table td {
+      padding: 0.7rem 1rem;
+      color: rgba(255,255,255,0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.92rem;
+    }
+    .comp-table td:not(:first-child) { text-align: center; font-size: 1rem; }
+    .comp-table .check { color: #34d399; }
+    .comp-table .cross { color: rgba(255,255,255,0.25); }
+
+    /* ═══ FINAL SECTION ═══ */
+    .final {
+      text-align: center;
+      padding: 3rem 0 5rem;
+    }
+    .final p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 500px;
+      margin: 0 auto 1.75rem;
+      line-height: 1.7;
+    }
+    .final p strong { color: rgba(255,255,255,0.8); }
+
+    /* ═══ T&C MODAL ═══ */
     .modal-overlay {
       display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
+      position: fixed; inset: 0; z-index: 1000;
       background: rgba(0,0,0,0.6);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      align-items: center;
-      justify-content: center;
+      align-items: center; justify-content: center;
       padding: 1rem;
     }
     .modal-overlay.active { display: flex; }
     .modal {
       background: #fff;
       border-radius: 1rem;
-      max-width: 680px;
-      width: 100%;
+      max-width: 680px; width: 100%;
       max-height: 85dvh;
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
       box-shadow: 0 30px 80px rgba(0,0,0,0.4);
     }
     .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 1.25rem 1.5rem;
       border-bottom: 1px solid #eee;
       flex-shrink: 0;
     }
-    .modal-header h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #111;
-    }
+    .modal-header h3 { font-size: 1.1rem; font-weight: 700; color: #111; }
     .modal-close {
-      width: 32px;
-      height: 32px;
+      width: 32px; height: 32px;
       border-radius: 50%;
       border: none;
       background: #f3f4f6;
       color: #666;
       font-size: 1.2rem;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       transition: background 0.2s;
     }
     .modal-close:hover { background: #e5e7eb; }
@@ -485,18 +477,12 @@
       line-height: 1.7;
     }
     .modal-body h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #111;
-      margin-top: 1.5rem;
-      margin-bottom: 0.4rem;
+      font-size: 0.95rem; font-weight: 700; color: #111;
+      margin-top: 1.5rem; margin-bottom: 0.4rem;
     }
     .modal-body h4:first-child { margin-top: 0; }
     .modal-body p { margin-bottom: 0.6rem; }
-    .modal-body ul {
-      padding-left: 1.25rem;
-      margin-bottom: 0.75rem;
-    }
+    .modal-body ul { padding-left: 1.25rem; margin-bottom: 0.75rem; }
     .modal-body li { margin-bottom: 0.3rem; }
     .modal-body .declaration {
       margin-top: 1.25rem;
@@ -531,138 +517,68 @@
   <noscript><img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=1367108322051761&ev=PageView&noscript=1" /></noscript>
 
-  <div class="page">
-
-    <!-- LEFT: Program Info -->
-    <div class="info">
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero">
+    <div class="hero-inner">
       <div class="badge">4-Week Mind-Body Program</div>
       <h1>The <span>Suri</span> Program</h1>
-      <p class="lead">
+      <p class="subtitle">
         A structured healing journey to retrain your brain, calm your nervous system,
         and finally break free from chronic pain — even if nothing else has worked.
       </p>
+      <a href="#pricing" class="cta-primary">Choose Your Plan &darr;</a>
+      <span class="scroll-hint">&darr;</span>
+    </div>
+  </section>
 
-      <ul class="features">
-        <li>
+  <!-- ═══════════ WHAT'S INSIDE ═══════════ -->
+  <section class="modules">
+    <div class="container reveal">
+      <h2>Your 4-Week Healing Journey</h2>
+      <p class="section-sub">Each week builds on the last, guiding you from understanding to freedom.</p>
+      <div class="module-grid">
+        <div class="module-card">
           <div class="num">1</div>
-          <div><strong>Mind-Body Awareness</strong> — understand how emotions, stress, and beliefs create and maintain pain patterns.</div>
-        </li>
-        <li>
+          <h3>Mind-Body Awareness</h3>
+          <p>Understand how emotions, stress, and beliefs create and maintain pain patterns — and why your body holds on.</p>
+        </div>
+        <div class="module-card">
           <div class="num">2</div>
-          <div><strong>Nervous System Reset</strong> — somatic calming tools to reduce flare-ups and help your brain feel safe again.</div>
-        </li>
-        <li>
+          <h3>Nervous System Reset</h3>
+          <p>Somatic calming tools to reduce flare-ups, lower your threat response, and help your brain feel safe again.</p>
+        </div>
+        <div class="module-card">
           <div class="num">3</div>
-          <div><strong>Emotional Release &amp; EFT</strong> — guided tapping and journalling to release tension stored in the body.</div>
-        </li>
-        <li>
+          <h3>Emotional Release &amp; EFT</h3>
+          <p>Guided tapping and journalling to release tension stored in the body — emotions that pain has been protecting.</p>
+        </div>
+        <div class="module-card">
           <div class="num">4</div>
-          <div><strong>Rewire &amp; Return to Movement</strong> — shift fear-based beliefs and rebuild confidence to move freely.</div>
-        </li>
-      </ul>
-
-      <hr class="divider" />
-
-      <p class="quote">
-        "At 32, a doctor told me to just live with my pain. I found a different way — and healed.
-        Now I help others do the same."
-        <strong>— Avnita Suri, Lifestyle Prescriptions Health Coach</strong>
-      </p>
-    </div>
-
-    <!-- RIGHT: Checkout Card -->
-    <div class="card">
-      <h2>Enrol Now</h2>
-      <p class="card-sub">Secure your place on the program</p>
-
-      <!-- TIER TABS -->
-      <div class="tier-tabs">
-        <div class="tier-tab active" data-tier="gold" onclick="selectTier('gold')">
-          <div class="tier-name">Gold Program</div>
-          <div class="tier-desc">Full program + private sessions</div>
-        </div>
-        <div class="tier-tab" data-tier="silver" onclick="selectTier('silver')">
-          <div class="tier-name">Silver Program</div>
-          <div class="tier-desc">6 months &middot; no private sessions</div>
+          <h3>Rewire &amp; Return to Movement</h3>
+          <p>Shift fear-based beliefs and rebuild the confidence to move freely — without bracing for the next flare-up.</p>
         </div>
       </div>
-
-      <!-- GOLD PAYMENT OPTIONS -->
-      <div id="goldPlans" class="plan-options">
-        <label class="plan-option best-value selected" onclick="selectPlan(this, 'gold_full')">
-          <input type="radio" name="plan" value="gold_full" checked />
-          <div class="plan-info">
-            <div class="plan-label">Pay in full</div>
-            <div class="plan-detail">One-time payment &mdash; save the most</div>
-          </div>
-          <div class="plan-price">&pound;1,197</div>
-        </label>
-        <label class="plan-option" onclick="selectPlan(this, 'gold_2')">
-          <input type="radio" name="plan" value="gold_2" />
-          <div class="plan-info">
-            <div class="plan-label">2 monthly payments</div>
-          </div>
-          <div class="plan-price">&pound;599 <small>/mo</small></div>
-        </label>
-        <label class="plan-option" onclick="selectPlan(this, 'gold_3')">
-          <input type="radio" name="plan" value="gold_3" />
-          <div class="plan-info">
-            <div class="plan-label">3 monthly payments</div>
-          </div>
-          <div class="plan-price">&pound;399 <small>/mo</small></div>
-        </label>
-        <label class="plan-option" onclick="selectPlan(this, 'gold_4')">
-          <input type="radio" name="plan" value="gold_4" />
-          <div class="plan-info">
-            <div class="plan-label">4 monthly payments</div>
-          </div>
-          <div class="plan-price">&pound;299 <small>/mo</small></div>
-        </label>
-        <label class="plan-option" onclick="selectPlan(this, 'gold_6')">
-          <input type="radio" name="plan" value="gold_6" />
-          <div class="plan-info">
-            <div class="plan-label">6 monthly payments</div>
-            <div class="plan-detail">Most flexible</div>
-          </div>
-          <div class="plan-price">&pound;200 <small>/mo</small></div>
-        </label>
-      </div>
-
-      <!-- SILVER PLAN (hidden by default) -->
-      <div id="silverPlans" class="plan-options" style="display:none;">
-        <label class="plan-option selected" onclick="selectPlan(this, 'silver')">
-          <input type="radio" name="plan" value="silver" checked />
-          <div class="plan-info">
-            <div class="plan-label">Silver Program</div>
-            <div class="plan-detail">6 months &middot; group sessions only, no private 1-to-1</div>
-          </div>
-          <div class="plan-price">&pound;597</div>
-        </label>
-      </div>
-
-      <label class="field-label" for="fullName">Full Name</label>
-      <input type="text" id="fullName" placeholder="Enter your full name" autocomplete="name" />
-
-      <div class="checkbox-group">
-        <label>
-          <input type="checkbox" id="ageCheck" />
-          I confirm that I am over 18 years of age.
-        </label>
-        <label>
-          <input type="checkbox" id="termsCheck" />
-          I accept the <button type="button" class="tc-link" id="openTerms">terms and conditions</button>.
-        </label>
-      </div>
-
-      <a id="enrolBtn" class="btn disabled" href="https://buy.stripe.com/5kQ9AU9bagGO5Zs1HL33W0c" target="_blank">
-        Proceed to Payment
-      </a>
-      <p class="error-msg" id="errorMsg"></p>
-      <p class="secure">Secure payment via Stripe</p>
     </div>
+  </section>
 
-    <!-- TRUST BAR -->
-    <div class="trust-bar">
+  <!-- ═══════════ TESTIMONIAL ═══════════ -->
+  <section class="testimonial">
+    <div class="container reveal">
+      <div class="quote-mark">&ldquo;</div>
+      <blockquote>
+        At 32, a doctor told me to just live with my pain. I found a different way —
+        and healed. Now I help others do the same.
+      </blockquote>
+      <div class="attribution">
+        Avnita Suri
+        <span>Lifestyle Prescriptions Health Coach</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ TRUST BAR ═══════════ -->
+  <div class="container">
+    <div class="trust-strip reveal">
       <div class="trust-item">
         <div class="trust-icon">&#128274;</div>
         Secure Stripe checkout
@@ -680,71 +596,174 @@
         Lifetime access to materials
       </div>
     </div>
+  </div>
 
-    <!-- COMPARISON TABLE -->
-    <div class="comparison">
-      <h3>What's included</h3>
-      <table>
+  <!-- ═══════════ PRICING ═══════════ -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="reveal">
+        <h2>Choose Your Plan</h2>
+        <p class="section-sub">Two paths to healing. Pick the one that feels right for you.</p>
+      </div>
+
+      <!-- TIER CARDS -->
+      <div class="pricing-cards reveal">
+        <div class="price-card active" data-tier="gold" onclick="selectTier('gold')">
+          <div class="popular-tag">Most Popular</div>
+          <div class="tier-name">Gold Program</div>
+          <div class="price-block">
+            <div class="from">From</div>
+            <div class="amount">&pound;200<span class="period">/mo</span></div>
+            <div class="note">or &pound;1,197 one-time</div>
+          </div>
+          <ul class="feat-list">
+            <li><span class="ic yes">&#10003;</span> Weekly group coaching calls</li>
+            <li><span class="ic yes">&#10003;</span> Full video curriculum</li>
+            <li><span class="ic yes">&#10003;</span> Workbooks &amp; journalling prompts</li>
+            <li><span class="ic yes">&#10003;</span> Private WhatsApp community</li>
+            <li><span class="ic yes">&#10003;</span> Somatic &amp; EFT audio library</li>
+            <li><span class="ic yes">&#10003;</span> <strong>1-to-1 private coaching</strong></li>
+            <li><span class="ic yes">&#10003;</span> <strong>Personalised pain recovery plan</strong></li>
+          </ul>
+          <button class="select-tier-btn">Select Gold</button>
+        </div>
+
+        <div class="price-card" data-tier="silver" onclick="selectTier('silver')">
+          <div class="tier-name">Silver Program</div>
+          <div class="price-block">
+            <div class="from">&nbsp;</div>
+            <div class="amount">&pound;597</div>
+            <div class="note">one-time payment</div>
+          </div>
+          <ul class="feat-list">
+            <li><span class="ic yes">&#10003;</span> Weekly group coaching calls</li>
+            <li><span class="ic yes">&#10003;</span> Full video curriculum</li>
+            <li><span class="ic yes">&#10003;</span> Workbooks &amp; journalling prompts</li>
+            <li><span class="ic yes">&#10003;</span> Private WhatsApp community</li>
+            <li><span class="ic yes">&#10003;</span> Somatic &amp; EFT audio library</li>
+            <li><span class="ic no">&#10007;</span> <span style="color:rgba(255,255,255,0.35)">No private coaching</span></li>
+            <li><span class="ic no">&#10007;</span> <span style="color:rgba(255,255,255,0.35)">No personalised plan</span></li>
+          </ul>
+          <button class="select-tier-btn">Select Silver</button>
+        </div>
+      </div>
+
+      <!-- CHECKOUT -->
+      <div class="checkout-card reveal" id="checkout">
+        <h3>Complete Your Enrolment</h3>
+        <p class="checkout-sub" id="checkoutSub">Gold Program — choose your payment plan</p>
+
+        <!-- GOLD PAYMENT OPTIONS -->
+        <div id="goldPlans" class="plan-options">
+          <label class="plan-option best-value selected" onclick="selectPlan(this, 'gold_full')">
+            <input type="radio" name="plan" value="gold_full" checked />
+            <div class="plan-info">
+              <div class="plan-label">Pay in full</div>
+              <div class="plan-detail">One-time payment — save the most</div>
+            </div>
+            <div class="plan-price">&pound;1,197</div>
+          </label>
+          <label class="plan-option" onclick="selectPlan(this, 'gold_2')">
+            <input type="radio" name="plan" value="gold_2" />
+            <div class="plan-info">
+              <div class="plan-label">2 monthly payments</div>
+            </div>
+            <div class="plan-price">&pound;599 <small>/mo</small></div>
+          </label>
+          <label class="plan-option" onclick="selectPlan(this, 'gold_3')">
+            <input type="radio" name="plan" value="gold_3" />
+            <div class="plan-info">
+              <div class="plan-label">3 monthly payments</div>
+            </div>
+            <div class="plan-price">&pound;399 <small>/mo</small></div>
+          </label>
+          <label class="plan-option" onclick="selectPlan(this, 'gold_4')">
+            <input type="radio" name="plan" value="gold_4" />
+            <div class="plan-info">
+              <div class="plan-label">4 monthly payments</div>
+            </div>
+            <div class="plan-price">&pound;299 <small>/mo</small></div>
+          </label>
+          <label class="plan-option" onclick="selectPlan(this, 'gold_6')">
+            <input type="radio" name="plan" value="gold_6" />
+            <div class="plan-info">
+              <div class="plan-label">6 monthly payments</div>
+              <div class="plan-detail">Most flexible</div>
+            </div>
+            <div class="plan-price">&pound;200 <small>/mo</small></div>
+          </label>
+        </div>
+
+        <!-- SILVER PLAN (hidden by default) -->
+        <div id="silverPlans" class="plan-options" style="display:none;">
+          <label class="plan-option selected" onclick="selectPlan(this, 'silver')">
+            <input type="radio" name="plan" value="silver" checked />
+            <div class="plan-info">
+              <div class="plan-label">Silver Program</div>
+              <div class="plan-detail">6 months &middot; group sessions only, no private 1-to-1</div>
+            </div>
+            <div class="plan-price">&pound;597</div>
+          </label>
+        </div>
+
+        <label class="field-label" for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter your full name" autocomplete="name" />
+
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" id="ageCheck" />
+            I confirm that I am over 18 years of age.
+          </label>
+          <label>
+            <input type="checkbox" id="termsCheck" />
+            I accept the <button type="button" class="tc-link" id="openTerms">terms and conditions</button>.
+          </label>
+        </div>
+
+        <a id="enrolBtn" class="btn disabled" href="https://buy.stripe.com/5kQ9AU9bagGO5Zs1HL33W0c" target="_blank">
+          Proceed to Payment
+        </a>
+        <p class="error-msg" id="errorMsg"></p>
+        <p class="secure">&#128274; Secure payment via Stripe</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ COMPARISON TABLE ═══════════ -->
+  <section class="comparison">
+    <div class="container reveal">
+      <h2>Gold vs Silver — At a Glance</h2>
+      <table class="comp-table">
         <thead>
-          <tr>
-            <th></th>
-            <th>Gold</th>
-            <th>Silver</th>
-          </tr>
+          <tr><th></th><th>Gold</th><th>Silver</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Weekly group coaching calls</td>
-            <td class="check">&#10003;</td>
-            <td class="check">&#10003;</td>
-          </tr>
-          <tr>
-            <td>Full video curriculum</td>
-            <td class="check">&#10003;</td>
-            <td class="check">&#10003;</td>
-          </tr>
-          <tr>
-            <td>Workbooks &amp; journalling prompts</td>
-            <td class="check">&#10003;</td>
-            <td class="check">&#10003;</td>
-          </tr>
-          <tr>
-            <td>Private WhatsApp community</td>
-            <td class="check">&#10003;</td>
-            <td class="check">&#10003;</td>
-          </tr>
-          <tr>
-            <td>Somatic &amp; EFT audio library</td>
-            <td class="check">&#10003;</td>
-            <td class="check">&#10003;</td>
-          </tr>
-          <tr>
-            <td>1-to-1 private coaching sessions</td>
-            <td class="check">&#10003;</td>
-            <td class="cross">&#10007;</td>
-          </tr>
-          <tr>
-            <td>Personalised pain recovery plan</td>
-            <td class="check">&#10003;</td>
-            <td class="cross">&#10007;</td>
-          </tr>
-          <tr>
-            <td>Programme duration</td>
-            <td>4 weeks</td>
-            <td>6 months</td>
-          </tr>
+          <tr><td>Weekly group coaching calls</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Full video curriculum</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Workbooks &amp; journalling prompts</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Private WhatsApp community</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Somatic &amp; EFT audio library</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>1-to-1 private coaching sessions</td><td class="check">&#10003;</td><td class="cross">&#10007;</td></tr>
+          <tr><td>Personalised pain recovery plan</td><td class="check">&#10003;</td><td class="cross">&#10007;</td></tr>
+          <tr><td>Programme duration</td><td>4 weeks</td><td>6 months</td></tr>
         </tbody>
       </table>
     </div>
+  </section>
 
-    <!-- GUARANTEE -->
-    <div class="guarantee">
-      <p><strong>Your healing matters.</strong> If you have any questions before enrolling, reach out to Avnita directly — no pressure, just honest conversation about whether this is right for you.</p>
+  <!-- ═══════════ FINAL SECTION ═══════════ -->
+  <section class="final">
+    <div class="container reveal">
+      <p>
+        <strong>Your healing matters.</strong> If you have any questions before enrolling,
+        reach out to Avnita directly — no pressure, just honest conversation about whether
+        this is right for you.
+      </p>
+      <a href="#pricing" class="cta-primary">Enrol Now &uarr;</a>
     </div>
+  </section>
 
-  </div>
-
-  <!-- T&C MODAL -->
+  <!-- ═══════════ T&C MODAL ═══════════ -->
   <div class="modal-overlay" id="tcModal">
     <div class="modal" id="tcModalInner">
       <div class="modal-header">
@@ -782,7 +801,6 @@
           encouraged to go at your own pace, pause when needed, and seek appropriate professional
           support if difficult feelings arise.
         </p>
-
         <h4>Medical Responsibility</h4>
         <p>
           You acknowledge that persistent symptoms can sometimes be associated with underlying medical
@@ -797,21 +815,18 @@
           symptoms, or if you are concerned about your health. In an emergency, contact emergency
           services or attend A&amp;E.
         </p>
-
         <h4>Crisis Support</h4>
         <p>
           The programme does not provide crisis support. If you are experiencing thoughts of harming
           yourself or others, feel unsafe, or are in immediate distress, please contact emergency services,
           NHS 111, your GP, a crisis helpline, or your local urgent mental health support service.
         </p>
-
         <h4>Testimonials and Personal Stories</h4>
         <p>
           Any examples, testimonials, case studies or personal recovery stories shared during the
           programme are provided for educational and illustrative purposes only. They do not constitute a
           promise, prediction or guarantee that any participant will achieve similar results.
         </p>
-
         <h4>Group Participation and Confidentiality</h4>
         <p>
           Because this is a group programme, participants are expected to respect each other's privacy. You
@@ -819,14 +834,12 @@
           details outside the group. While reasonable steps are taken to create a respectful and confidential
           space, absolute confidentiality cannot be guaranteed in a group setting.
         </p>
-
         <h4>Online Participation</h4>
         <p>
           Online participation involves some risks, including technical disruption, privacy risks, or the
           possibility that others in your environment may overhear. You are responsible for joining from a
           private and safe space where possible.
         </p>
-
         <h4>Technical Access and Programme Materials</h4>
         <p>
           While every reasonable effort will be made to provide access to live sessions, recordings,
@@ -848,7 +861,6 @@
           Participants are responsible for ensuring they have appropriate internet access, devices and
           software necessary to participate in the programme.
         </p>
-
         <h4>Recordings and Intellectual Property</h4>
         <p>
           Live sessions may be recorded and made available to programme participants. By participating,
@@ -859,14 +871,12 @@
           Programme materials, recordings, worksheets and educational content are provided for personal
           use only and may not be copied, distributed, reproduced, sold or shared without written permission.
         </p>
-
         <h4>Limitation of Liability</h4>
         <p>
           To the maximum extent permitted by law, the programme facilitator, coaches and associated team
           members shall not be liable for any loss, injury, damage, claim or adverse outcome arising from
           participation in the programme, except where such liability cannot legally be excluded.
         </p>
-
         <h4>Acknowledgement and Consent</h4>
         <p>
           Please read this information carefully. If anything is unclear, please ask before enrolling. By
@@ -875,7 +885,6 @@
           understand the programme is educational and supportive rather than medical or therapeutic
           treatment.
         </p>
-
         <div class="declaration">
           <h4>Participant Declaration</h4>
           <p>
@@ -905,34 +914,40 @@
     var selectedPlan = 'gold_full';
 
     // ── ELEMENTS ──
-    var nameInput = document.getElementById('fullName');
-    var ageCheck = document.getElementById('ageCheck');
-    var termsCheck = document.getElementById('termsCheck');
-    var enrolBtn = document.getElementById('enrolBtn');
-    var errorMsg = document.getElementById('errorMsg');
-    var tcModal = document.getElementById('tcModal');
+    var nameInput   = document.getElementById('fullName');
+    var ageCheck    = document.getElementById('ageCheck');
+    var termsCheck  = document.getElementById('termsCheck');
+    var enrolBtn    = document.getElementById('enrolBtn');
+    var errorMsg    = document.getElementById('errorMsg');
+    var tcModal     = document.getElementById('tcModal');
     var tcModalInner = document.getElementById('tcModalInner');
-    var openTerms = document.getElementById('openTerms');
-    var closeModal = document.getElementById('closeModal');
-    var goldPlans = document.getElementById('goldPlans');
+    var openTerms   = document.getElementById('openTerms');
+    var closeModal  = document.getElementById('closeModal');
+    var goldPlans   = document.getElementById('goldPlans');
     var silverPlans = document.getElementById('silverPlans');
+    var checkoutSub = document.getElementById('checkoutSub');
 
-    // ── TIER SELECTION ──
+    // ── TIER SELECTION (pricing cards) ──
     function selectTier(tier) {
-      document.querySelectorAll('.tier-tab').forEach(function (tab) {
-        tab.classList.toggle('active', tab.dataset.tier === tier);
+      document.querySelectorAll('.price-card').forEach(function (card) {
+        card.classList.toggle('active', card.dataset.tier === tier);
       });
       if (tier === 'gold') {
+        checkoutSub.textContent = 'Gold Program — choose your payment plan';
         goldPlans.style.display = '';
         silverPlans.style.display = 'none';
         selectPlan(goldPlans.querySelector('.plan-option.selected') || goldPlans.querySelector('.plan-option'), 'gold_full');
         goldPlans.querySelector('input[value="gold_full"]').checked = true;
       } else {
+        checkoutSub.textContent = 'Silver Program — £597 one-time payment';
         goldPlans.style.display = 'none';
         silverPlans.style.display = '';
         selectPlan(silverPlans.querySelector('.plan-option'), 'silver');
         silverPlans.querySelector('input[value="silver"]').checked = true;
       }
+      setTimeout(function () {
+        document.getElementById('checkout').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
     }
 
     // ── PLAN SELECTION ──
@@ -949,24 +964,17 @@
     // ── VALIDATION ──
     function validate() {
       var valid = nameInput.value.trim().length > 0 && ageCheck.checked && termsCheck.checked;
-      if (valid) {
-        enrolBtn.classList.remove('disabled');
-      } else {
-        enrolBtn.classList.add('disabled');
-      }
+      if (valid) { enrolBtn.classList.remove('disabled'); }
+      else { enrolBtn.classList.add('disabled'); }
       errorMsg.textContent = '';
     }
-
     nameInput.addEventListener('input', validate);
     ageCheck.addEventListener('change', validate);
     termsCheck.addEventListener('change', validate);
 
     // ── ENROL ──
     enrolBtn.addEventListener('click', function (e) {
-      if (enrolBtn.classList.contains('disabled')) {
-        e.preventDefault();
-        return;
-      }
+      if (enrolBtn.classList.contains('disabled')) { e.preventDefault(); return; }
       var data = {
         name: nameInput.value.trim(),
         age_confirmed: ageCheck.checked,
@@ -979,9 +987,7 @@
         var blob = new Blob([JSON.stringify(data)], { type: 'text/plain' });
         navigator.sendBeacon(CONSENT_LOG_URL, blob);
       }
-      if (typeof fbq !== 'undefined') {
-        fbq('track', 'InitiateCheckout');
-      }
+      if (typeof fbq !== 'undefined') { fbq('track', 'InitiateCheckout'); }
     });
 
     // ── T&C MODAL ──
@@ -990,25 +996,34 @@
       tcModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
-
     closeModal.addEventListener('click', function () {
       tcModal.classList.remove('active');
       document.body.style.overflow = '';
     });
-
     tcModal.addEventListener('click', function (e) {
       if (!tcModalInner.contains(e.target)) {
         tcModal.classList.remove('active');
         document.body.style.overflow = '';
       }
     });
-
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && tcModal.classList.contains('active')) {
         tcModal.classList.remove('active');
         document.body.style.overflow = '';
       }
     });
+
+    // ── SCROLL REVEAL ──
+    var reveals = document.querySelectorAll('.reveal');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function (el) { observer.observe(el); });
   </script>
 </body>
 
