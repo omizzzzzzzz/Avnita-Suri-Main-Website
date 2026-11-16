@@ -17,27 +17,119 @@
 
     /* ── LAYOUT ── */
     .page {
-      min-height: 100dvh;
+      max-width: 1100px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr;
-      align-items: center;
-      padding: 2rem 1.25rem;
+      align-items: start;
+      padding: 2.5rem 1.25rem;
       gap: 2rem;
     }
     @media (min-width: 768px) {
       .page {
-        grid-template-columns: 1fr 420px;
-        padding: 2rem 4rem;
-        gap: 4rem;
+        grid-template-columns: 1fr 400px;
+        padding: 3rem 2rem;
+        gap: 2.5rem;
+        align-items: start;
+        min-height: 100dvh;
+        align-content: center;
       }
     }
     @media (min-width: 1024px) {
-      .page { padding: 2rem 6rem; gap: 5rem; }
+      .page { padding: 3rem 2.5rem; gap: 3rem; }
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 2.5rem;
+      padding: 1.5rem 0 0.5rem;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .trust-item .trust-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(44,160,218,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .comparison {
+      grid-column: 1 / -1;
+      max-width: 700px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .comparison h3 {
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .comparison table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .comparison th {
+      padding: 0.65rem 0.75rem;
+      text-align: left;
+      color: #2ca0da;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.9rem;
+    }
+    .comparison th:not(:first-child) {
+      text-align: center;
+      width: 90px;
+    }
+    .comparison td {
+      padding: 0.55rem 0.75rem;
+      color: rgba(255,255,255,0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .comparison td:not(:first-child) {
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    .comparison .check { color: #34d399; }
+    .comparison .cross { color: rgba(255,255,255,0.25); }
+
+    /* ── GUARANTEE ── */
+    .guarantee {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 1.5rem 1rem 2.5rem;
+    }
+    .guarantee p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .guarantee p strong {
+      color: rgba(255,255,255,0.8);
     }
 
     /* ── LEFT: INFO PANEL ── */
     .info {
-      max-width: 560px;
+      width: 100%;
       background: rgba(255,255,255,0.07);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -567,6 +659,87 @@
       </a>
       <p class="error-msg" id="errorMsg"></p>
       <p class="secure">Secure payment via Stripe</p>
+    </div>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+      <div class="trust-item">
+        <div class="trust-icon">&#128274;</div>
+        Secure Stripe checkout
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">&#127891;</div>
+        Certified health coach
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">&#128172;</div>
+        Private group support
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">&#9201;</div>
+        Lifetime access to materials
+      </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="comparison">
+      <h3>What's included</h3>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Gold</th>
+            <th>Silver</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Weekly group coaching calls</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Full video curriculum</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Workbooks &amp; journalling prompts</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Private WhatsApp community</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Somatic &amp; EFT audio library</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>1-to-1 private coaching sessions</td>
+            <td class="check">&#10003;</td>
+            <td class="cross">&#10007;</td>
+          </tr>
+          <tr>
+            <td>Personalised pain recovery plan</td>
+            <td class="check">&#10003;</td>
+            <td class="cross">&#10007;</td>
+          </tr>
+          <tr>
+            <td>Programme duration</td>
+            <td>4 weeks</td>
+            <td>6 months</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GUARANTEE -->
+    <div class="guarantee">
+      <p><strong>Your healing matters.</strong> If you have any questions before enrolling, reach out to Avnita directly — no pressure, just honest conversation about whether this is right for you.</p>
     </div>
 
   </div>
