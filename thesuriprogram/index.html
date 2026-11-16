@@ -276,6 +276,38 @@
       box-shadow: 0 25px 70px rgba(0,0,0,0.35);
     }
     @media (min-width: 768px) { .checkout-card { padding: 2.5rem 2rem; } }
+    .plan-summary {
+      background: #f0f7ff;
+      border: 2px solid #1071b8;
+      border-radius: 0.75rem;
+      padding: 1.25rem 1rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .plan-summary .ps-tier {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #1071b8;
+      margin-bottom: 0.3rem;
+    }
+    .plan-summary .ps-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 0.15rem;
+    }
+    .plan-summary .ps-price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #1071b8;
+    }
+    .plan-summary .ps-detail {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 0.2rem;
+    }
     .checkout-card h3 {
       font-size: 1.25rem; font-weight: 700; color: #111;
       text-align: center; margin-bottom: 0.2rem;
@@ -653,6 +685,14 @@
         <h3>Complete Your Enrolment</h3>
         <p class="checkout-sub" id="checkoutSub">Gold Program — choose your payment plan</p>
 
+        <!-- LOCKED PLAN SUMMARY (shown when ?plan= is set) -->
+        <div id="planSummary" class="plan-summary" style="display:none;">
+          <div class="ps-tier" id="summaryTier"></div>
+          <div class="ps-name" id="summaryName"></div>
+          <div class="ps-price" id="summaryPrice"></div>
+          <div class="ps-detail" id="summaryDetail"></div>
+        </div>
+
         <!-- GOLD PAYMENT OPTIONS -->
         <div id="goldPlans" class="plan-options">
           <label class="plan-option best-value selected" onclick="selectPlan(this, 'gold_full')">
@@ -1012,6 +1052,49 @@
         document.body.style.overflow = '';
       }
     });
+
+    // ── LOCKED PLAN MODE (?plan= parameter) ──
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var lockedPlan = params.get('plan');
+      if (!lockedPlan || !STRIPE_URLS[lockedPlan]) return;
+
+      var meta = {
+        gold_full: { tier: 'Gold Program', name: 'Pay in full', price: '£1,197', detail: 'One-time payment — save the most' },
+        gold_2:    { tier: 'Gold Program', name: '2 monthly payments', price: '£599/mo', detail: '2 instalments of £599' },
+        gold_3:    { tier: 'Gold Program', name: '3 monthly payments', price: '£399/mo', detail: '3 instalments of £399' },
+        gold_4:    { tier: 'Gold Program', name: '4 monthly payments', price: '£299/mo', detail: '4 instalments of £299' },
+        gold_6:    { tier: 'Gold Program', name: '6 monthly payments', price: '£200/mo', detail: '6 instalments of £200' },
+        silver:    { tier: 'Silver Program', name: 'Silver Program', price: '£597', detail: '6 months · group sessions only' }
+      };
+
+      var info = meta[lockedPlan];
+      if (!info) return;
+
+      selectedPlan = lockedPlan;
+      enrolBtn.href = STRIPE_URLS[lockedPlan];
+
+      checkoutSub.textContent = info.tier;
+      goldPlans.style.display = 'none';
+      silverPlans.style.display = 'none';
+
+      var summary = document.getElementById('planSummary');
+      summary.style.display = '';
+      document.getElementById('summaryTier').textContent = info.tier;
+      document.getElementById('summaryName').textContent = info.name;
+      document.getElementById('summaryPrice').textContent = info.price;
+      document.getElementById('summaryDetail').textContent = info.detail;
+
+      var cards = document.querySelector('.pricing-cards');
+      if (cards) cards.style.display = 'none';
+      var comp = document.querySelector('.comparison');
+      if (comp) comp.style.display = 'none';
+
+      var heroCta = document.querySelector('.hero .cta-primary');
+      if (heroCta) { heroCta.textContent = 'Enrol Now ↓'; heroCta.href = '#checkout'; }
+      var finalCta = document.querySelector('.final .cta-primary');
+      if (finalCta) finalCta.href = '#checkout';
+    })();
 
     // ── SCROLL REVEAL ──
     var reveals = document.querySelectorAll('.reveal');
